@@ -1,0 +1,13 @@
+CREATE TABLE `table_jobs` (
+  `Job_id` int(11) NOT NULL auto_increment,
+  `Title` varchar(45) default NULL,
+  `Description` longtext,
+  `Industry` varchar(45) default NULL,
+  `Employment` varchar(45) default NULL,
+  `Employer` varchar(45) default NULL,
+  `ContactNumber` int(11) default NULL,
+  `ContactEmail` varchar(45) default NULL,
+  `ContactAddress` varchar(60) default NULL,
+  `Url_link` varchar(60) default NULL,
+  PRIMARY KEY  (`Job_id`)
+)
