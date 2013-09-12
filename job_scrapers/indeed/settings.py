@@ -11,5 +11,7 @@ BOT_NAME = 'indeed'
 SPIDER_MODULES = ['indeed.spiders']
 NEWSPIDER_MODULE = 'indeed.spiders'
 
+ITEM_PIPELINES = ['indeed.pipelines.DatabasePipeline']
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'indeed (+http://www.yourdomain.com)'

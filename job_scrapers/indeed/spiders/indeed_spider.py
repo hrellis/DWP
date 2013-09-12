@@ -14,9 +14,7 @@ class IndeedSpider(BaseSpider):
 		hxs = HtmlXPathSelector(response)
 		job_results = hxs.select('//div[@itemtype = "http://schema.org/JobPosting"]')
 
-		items = []
-
-		for job in job_results:			
+		for job in job_results:
 			item = JobItem()
 
 			item['title'] = job.select("./*[@class='jobtitle']//text()").extract()
@@ -31,7 +29,5 @@ class IndeedSpider(BaseSpider):
 
 			item['link'] = 'http://www.indeed.co.uk' + item['link']
 
-			items.append(item)
-
-		return items
+			yield item
 		
