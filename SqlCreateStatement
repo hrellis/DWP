@@ -1,13 +1,15 @@
 CREATE TABLE `table_jobs` (
   `Job_id` int(11) NOT NULL auto_increment,
-  `Title` varchar(45) default NULL,
+  `Title` varchar(100) default NULL,
   `Description` longtext,
+  `Location` varchar(45) default NULL,
   `Industry` varchar(45) default NULL,
   `Employment` varchar(45) default NULL,
   `Employer` varchar(45) default NULL,
-  `ContactNumber` varchar(11) default NULL,
-  `ContactEmail` varchar(45) default NULL,
-  `ContactAddress` varchar(60) default NULL,
+  `ContactNumber` varchar(15) default NULL,
+  `ContactEmail` varchar(60) default NULL,
+  `ContactAddress` varchar(500) default NULL,
+  `Date_Added` date default NULL,
   `Url_link` varchar(1000) default NULL,
   PRIMARY KEY  (`Job_id`)
-)
+) 
