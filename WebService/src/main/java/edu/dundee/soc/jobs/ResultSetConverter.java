@@ -7,6 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+/**
+ * @author http://stackoverflow.com/questions/6514876/most-effecient-conversion-of-resultset-to-json
+ */
 public class ResultSetConverter {
 
   public static JSONArray convert( ResultSet rs )

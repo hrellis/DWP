@@ -1,9 +1,12 @@
 package edu.dundee.soc.jobs;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -57,15 +60,56 @@ public class DatabaseConnector {
             return null;
         }
     }
-    
+
     /**
      * closes any connection open in the connect field
      */
-    public void closeConnection() {
+    public void close() {
         try {
             connect.close();
         } catch (SQLException ex) {
             System.err.println("Error while closing db connection" + ex.toString());
+        }
+    }
+    
+    
+    private static final String SQL_FIND = "SELECT * FROM table_jobs WHERE location LIKE ? AND industry IN (%s);";
+
+    /**
+     * Based on http://stackoverflow.com/questions/178479/preparedstatement-in-clause-alternatives
+     */
+    public ResultSet find(String[] industry, String location) throws SQLException {        
+        String sql = String.format(SQL_FIND, preparePlaceHolders(industry.length));
+        
+        connect = getConnection();
+        PreparedStatement statement = connect.prepareStatement(sql);
+        statement.setString(1, location);
+        setValues(statement, industry);        
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet;
+    }
+    
+    /**
+     * Support for adding a variable sized set to a SELECT query
+     * http://stackoverflow.com/questions/178479/preparedstatement-in-clause-alternatives
+     */
+    public static String preparePlaceHolders(int length) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < length;) {
+            builder.append("?");
+            if (++i < length) {
+                builder.append(",");
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * http://stackoverflow.com/questions/178479/preparedstatement-in-clause-alternatives
+     */
+    public static void setValues(PreparedStatement preparedStatement, String... values) throws SQLException {
+        for (int i = 0; i < values.length; i++) {
+            preparedStatement.setObject(i + 2, values[i]);
         }
     }
 }

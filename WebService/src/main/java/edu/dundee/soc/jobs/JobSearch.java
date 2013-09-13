@@ -30,17 +30,20 @@ public class JobSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        //Extract params from request
         String[] industry = request.getParameterValues("industry"); //Can specify multiple parameters
         String location = request.getParameter("location");
         String hours = request.getParameter("hours");
         String employer = request.getParameter("employer");
         
         DatabaseConnector db = new DatabaseConnector();
-        ResultSet rs = db.execute("SELECT * FROM table_jobs;"); 
-        
-        PrintWriter outputStream = response.getWriter();
         
         try{
+            //Execute db query
+            ResultSet rs = db.find(industry, location);
+            
+            //Convert db response to JSON
+            PrintWriter outputStream = response.getWriter();
             JSONArray json = ResultSetConverter.convert(rs);
             outputStream.print(json.toString());
         } catch (JSONException ex) {
