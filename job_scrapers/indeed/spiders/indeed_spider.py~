@@ -4,10 +4,23 @@ from indeed.items import JobItem
 
 class IndeedSpider(BaseSpider):
 	name = 'indeed'
-	allowed_domains = ['indeed.com']
+	allowed_domains = ['indeed.co.uk']
 
 	def __init__(self, q='', l=''):
-		self.start_urls = ["http://api.indeed.com/ads/apisearch?publisher=6848272948898688&q=%s&l=%s&	sort=&radius=&st=&jt=&start=&limit=50&fromage=&filter=&latlong=1&co=uk&v=2"  % (q, l)]
+		self.start_urls = ["""http://api.indeed.com/ads/apisearch?
+		publisher=6848272948898688&
+		q=%s&
+		l=%s&
+		sort=&
+		radius=&
+		st=&
+		jt=&
+		start=&
+		limit=50&
+		fromage=&
+		filter=&
+		latlong=1&
+		co=uk&"""  % (q, l)]
 
 	def parse(self, response):
 		hxs = HtmlXPathSelector(response)
@@ -21,12 +34,12 @@ class IndeedSpider(BaseSpider):
 			item['desc'] = job.select("./snippet").extract()	
 			item['location'] = job.select("./formattedLocation").extract()
 			item['employer'] = job.select("./company").extract()
-			
+
 			#Put the list of strings into one big string
 			for k, v in item.iteritems():
-				item[k] = ''.join(v).strip()			
+				item[k] = ''.join(v).strip()
 
-			item['link'] = item['link'].replace('viewjob', 'rc/clk')
+			item['link'] = 'http://www.indeed.co.uk' + item['link']
 
 			yield item
 		
