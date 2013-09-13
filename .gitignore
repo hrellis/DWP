@@ -1,2 +1,9 @@
 *.pyc
 *.json
+/WebService/dist/
+/projec/target/
+/projec/nbproject/
+/WebService!/build/
+/WebService!/dist/
+/WebService!/nbproject/private/
+/WebService/target/
