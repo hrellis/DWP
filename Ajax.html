@@ -7,15 +7,24 @@
     <div id="placeholder"></div>
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
+    	var output = $('#output');
 		$(document).ready(function(){
+		 
 			$.ajax({
 				url: 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry=sales',
 				dataType: 'jsonp'
+				function callback(data) {
+					$.each(data, function(i,item){
+	                var jobs = '<h1>'+item.Description+'</h1>'
+	                + '<p>'+item.Latitude+'<br>'
+	                + item.Longitude+'</p>';
+			
+			output.append(jobs);
+			})
 			});
 		})
 
-		function callback(data) {
-			alert(data);
+		
 		};
     </script>
     <div id="output"></div>
