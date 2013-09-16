@@ -16,16 +16,20 @@ class DatabasePipeline(object):
 
 	def process_item(self, item, spider):
 		try:
-		        self.cursor.execute("""INSERT INTO table_jobs 
-						(title, url_link, description, employer) 
-						VALUES (%s, %s, %s, %s)""",
-						(item['title'].encode('utf-8'),
-                		        	item['link'].encode('utf-8'),
-						item['desc'].encode('utf-8'),
-						item['employer'].encode('utf-8')))
-        		self.conn.commit()
+			self.cursor.execute("""INSERT INTO table_jobs 
+					(title, url_link, description, employer, location, industry, latitude, longitude) 
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
+					(item['title'].encode('utf-8'),
+								item['link'].encode('utf-8'),
+					item['desc'].encode('utf-8'),
+					item['employer'].encode('utf-8'),
+					item['location'].encode('utf-8'),
+					item['industry'].encode('utf-8'),
+					item['lat'].encode('utf-8'),
+					item['long'].encode('utf-8')))
+			self.conn.commit()
 
-    		except MySQLdb.Error, e:
-        		print "Error %d: %s" % (e.args[0], e.args[1])
+		except MySQLdb.Error, e:
+			print "Error %d: %s" % (e.args[0], e.args[1])
 
-    		return item
+		return item

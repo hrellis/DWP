@@ -11,4 +11,7 @@ class JobItem(Item):
 	location = Field()
 	link = Field()
 	desc = Field()
+	industry = Field()
+	long = Field()
+	lat = Field()
 	
