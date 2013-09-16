@@ -30,6 +30,8 @@ public class JobSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        response.setContentType("application/javascript");
+        
         //Extract params from request
         String[] industry = request.getParameterValues("industry"); //Can specify multiple parameters
         String location = request.getParameter("location");
@@ -46,7 +48,7 @@ public class JobSearch extends HttpServlet {
             PrintWriter outputStream = response.getWriter();
             JSONArray json = ResultSetConverter.convert(rs);
             String jsonString = json.toString();
-            jsonString = "(" + jsonString + ");";
+            jsonString = "callback(" + jsonString + ");";
             outputStream.print(jsonString);
         } catch (JSONException ex) {
             Logger.getLogger(JobSearch.class.getName()).log(Level.SEVERE, null, ex);
