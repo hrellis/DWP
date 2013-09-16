@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+</head>
+	<body onload ="testing2()">
+	<script>
+	function testing2()
+	{
+		document.getElementById('LocBtn').innerHTML = "Location:" + localStorage.locVar;
+		document.getElementById('IndustryBtn').innerHTML = "Industry:" + localStorage.industryVar;
+		document.getElementById('HoursBtn').innerHTML = "Employment Hours:" + localStorage.hoursVar;
+		document.getElementById('EmployerBtn').innerHTML = "Employer:" + localStorage.employerVar;
+	}
+	</script>
+	
+
+		<div class ="well">
+ 			<div class ="text-center">
+ 				<h4>Search Filters</h4>
+ 			</div>
+ 		</div>
+ 		<div class = "btn-toolbar text-center">
+       		<a href="LocationFilter.html">
+       			<button id ="LocBtn" class = "btn btn-success">Location:</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="industryFilter.html">
+       			<button id ="IndustryBtn" class = "btn btn-success">Industry:</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="EmploymentHours.html">
+       			<button id ="HoursBtn" class = "btn btn-success">Employment Hours:</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="employerFilter.html">
+       			<button id ="EmployerBtn" class = "btn btn-success">Employer:</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="searchJobs.html">
+       			<button class = "btn btn-success">Search</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="index.html">
+       			<button class = "btn btn-success">Back</button>
+       		</a>
+       </div>
+ 	<script src="js/bootstrap.js"></script> 
+ 		
+	</body>
+</html>
