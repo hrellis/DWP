@@ -29,7 +29,3 @@ sudo mvn package;
 #start tomcat again
 echo "Restarting tomcat..."
 sudo $TOMCAT_INIT start;
-
-#remove target dir
-echo "Cleaning up compile time dependencies.."
-sudo mvn clean;
