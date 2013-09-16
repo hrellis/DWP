@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+</head>
+<body>
+    <div id="placeholder"></div>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+  $(document).ready(function(){
+	    var output = $('#output');
+	     
+	    $.ajax({
+	        url: 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry=sales',
+	        dataType: 'jsonp',
+	        jsonp: 'jsoncallback',
+	        success: function (data, status){
+	           
+	                 
+	                output.append(jobs);
+	            });
+        },
+	        error: function(){
+	            output.text('There was an error loading the data.');
+	        }
+	    });
+	    function callback(data)
+	    {
+	    
+	    }
+	});
+    </script>
+    <div id="output"></div>
+</body>
+</html>
