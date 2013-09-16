@@ -45,7 +45,9 @@ public class JobSearch extends HttpServlet {
             //Convert db response to JSON
             PrintWriter outputStream = response.getWriter();
             JSONArray json = ResultSetConverter.convert(rs);
-            outputStream.print(json.toString());
+            String jsonString = json.toString();
+            jsonString = "(" + jsonString + ");";
+            outputStream.print(jsonString);
         } catch (JSONException ex) {
             Logger.getLogger(JobSearch.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException e) {
