@@ -14,7 +14,7 @@ class FacebookSpider(BaseSpider):
     #url for listing of page ids with locations nearby
     start_urls = ['https://graph.facebook.com/search?type=place&center=56.457331238956,-2.9763746796287&distance=50000&limit=1000&access_token=1379244598975239|cf601ab7afd846d736601704787435fe']
 
-    def parse(self, response):     
+    def parse(self, response):   
         graph = facebook.GraphAPI()
         graph.access_token = facebook.get_app_access_token('1379244598975239', 'cf601ab7afd846d736601704787435fe')
 
@@ -50,11 +50,10 @@ class FacebookSpider(BaseSpider):
             print graph.fql("""SELECT message, created_time 
                 FROM stream 
                 WHERE source_id=%s 
-                AND actor_id=%s 
+                AND actor_id=source_id 
                 AND (%s)""" 
                 % (location, 
-                   location, 
-                   self.generate_fql_keyword_search(['job', 'hiring', 'vacancy'])))
+                   self.generate_fql_keyword_search(['job', 'hiring', 'vacancy', 'position'])))
         
         i = JobItem()
         #i['domain_id'] = hxs.select('//input[@id="sid"]/@value').extract()

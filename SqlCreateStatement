@@ -1,15 +1,17 @@
-CREATE TABLE `table_jobs` (
-  `Job_id` int(11) NOT NULL auto_increment,
-  `Title` varchar(100) default NULL,
-  `Description` longtext,
-  `Location` varchar(45) default NULL,
-  `Industry` varchar(45) default NULL,
-  `Employment` varchar(45) default NULL,
-  `Employer` varchar(45) default NULL,
-  `ContactNumber` varchar(15) default NULL,
-  `ContactEmail` varchar(60) default NULL,
-  `ContactAddress` varchar(500) default NULL,
-  `Date_Added` date default NULL,
-  `Url_link` varchar(1000) default NULL,
-  PRIMARY KEY  (`Job_id`)
-) 
+CREATE SCHEMA IF NOT EXISTS `Jobs` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE `jobs` (
+  `job_id` int(11) NOT NULL auto_increment,
+  `title` varchar(100) default NULL,
+  `description` longtext,
+  `location` varchar(45) default NULL,
+  `industry` varchar(45) default NULL,
+  `employment` varchar(45) default NULL,
+  `employer` varchar(45) default NULL,
+  `contact_number` varchar(15) default NULL,
+  `contact_email` varchar(60) default NULL,
+  `contact_address` varchar(500) default NULL,
+  `date_added` date default NULL,
+  `url_link` varchar(1000) default NULL,
+  PRIMARY KEY  (`job_id`)
+);
