@@ -14,4 +14,4 @@ class JobItem(Item):
 	industry = Field()
 	long = Field()
 	lat = Field()
-	
+	date_time = Field()	

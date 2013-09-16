@@ -1,6 +1,7 @@
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 from indeed.items import JobItem
+from datetime import datetime
 
 class IndeedSpider(BaseSpider):
 	name = 'indeed'
@@ -25,10 +26,14 @@ class IndeedSpider(BaseSpider):
 			item['industry'] = self.industry 
 			item['long'] = job.select("./longitude/text()").extract()
 			item['lat'] = job.select("./latitude/text()").extract()
+			item['date_time'] = job.select("./date/text()").extract()
 			
 			#Put the list of strings into one big string
 			for k, v in item.iteritems():
-				item[k] = ''.join(v).strip()			
+				item[k] = ''.join(v).strip()
+				
+			#Sat, 07 Sep 2013 08:57:00 GMT
+			item['date_time'] = datetime.strptime(item['date_time'], '%a, %d %b %Y %X %Z') 
 
 			item['link'] = item['link'].replace('viewjob', 'rc/clk')
 

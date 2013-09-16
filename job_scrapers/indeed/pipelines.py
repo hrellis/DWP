@@ -16,17 +16,23 @@ class DatabasePipeline(object):
 
 	def process_item(self, item, spider):
 		try:
-			self.cursor.execute("""INSERT INTO table_jobs 
-					(title, url_link, description, employer, location, industry, latitude, longitude) 
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-					(item['title'].encode('utf-8'),
-								item['link'].encode('utf-8'),
-					item['desc'].encode('utf-8'),
-					item['employer'].encode('utf-8'),
-					item['location'].encode('utf-8'),
-					item['industry'].encode('utf-8'),
-					item['lat'].encode('utf-8'),
-					item['long'].encode('utf-8')))
+			'''tTitle, tDescription, tLocation, tIndustry, tEmployment ,tEmployer , tContactNumber , tContactEmail , 
+			tContactAddress, tDate_Added, tUrl_link, tLongitude, tLatitude'''
+			self.cursor.callproc('insert_job',
+									(item['title'].encode('utf-8'),
+									item['desc'].encode('utf-8'),
+									item['location'].encode('utf-8'),
+									item['industry'].encode('utf-8'),
+									None,
+									item['employer'].encode('utf-8'),
+									None, 
+									None, 
+									None,
+									item['date_time'].isoformat().encode('utf-8'),
+									item['link'].encode('utf-8'),
+									float(item['long']),
+									float(item['lat']))
+								)
 			self.conn.commit()
 
 		except MySQLdb.Error, e:
