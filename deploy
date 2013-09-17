@@ -10,8 +10,7 @@ echo "Updating from remote repository..."
 git reset --hard origin/master;
 git pull;
 
-chmod +x deploy
-chmod +x sox_splitter.sh
+chmod +x ../deploy
 
 #shutdown tomcat while we redeploy
 echo "Stopping tomcat..."
