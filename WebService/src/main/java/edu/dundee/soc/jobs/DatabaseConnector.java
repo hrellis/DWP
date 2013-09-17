@@ -84,7 +84,31 @@ public class DatabaseConnector {
         connect = getConnection();
         PreparedStatement statement = connect.prepareStatement(sql);
         statement.setString(1, location);
-        setValues(statement, industry);        
+        setValues(statement, 2, industry);        
+        ResultSet resultSet = statement.executeQuery();
+        return resultSet;
+    }
+    
+    
+    private static final String SQL_FIND_BY_DISTANCE =  "SELECT *, " +
+                                                        " ( 3959 * acos( cos( radians( ? )) * cos( radians( latitude )) * " +
+                                                        "cos( radians( longitude) - radians( ? )) + " + 
+                                                        "sin( radians( ? )) * sin(radians( latitude )))) " +
+                                                        "AS distance FROM table_jobs " +
+                                                        "WHERE industry IN (%s) " +
+                                                        "HAVING distance < 10 " +
+                                                        "ORDER BY distance;";
+    
+    public ResultSet find(String[] industry, String lat, String lng) throws SQLException {
+        String sql = String.format(SQL_FIND_BY_DISTANCE, preparePlaceHolders(industry.length));
+        
+        connect = getConnection();
+        PreparedStatement statement = connect.prepareStatement(sql);
+        statement.setString(1, lat);
+        statement.setString(2, lng);
+        statement.setString(3, lat);
+        setValues(statement, 4, industry);
+        
         ResultSet resultSet = statement.executeQuery();
         return resultSet;
     }
@@ -107,9 +131,9 @@ public class DatabaseConnector {
     /**
      * http://stackoverflow.com/questions/178479/preparedstatement-in-clause-alternatives
      */
-    public static void setValues(PreparedStatement preparedStatement, String... values) throws SQLException {
+    public static void setValues(PreparedStatement preparedStatement, int startParameter, String... values) throws SQLException {
         for (int i = 0; i < values.length; i++) {
-            preparedStatement.setObject(i + 2, values[i]);
+            preparedStatement.setObject(i + startParameter, values[i]);
         }
     }
 }

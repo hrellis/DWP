@@ -29,22 +29,45 @@ public class JobSearch extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("application/javascript");
-        
+
         //Extract params from request
         String[] industry = request.getParameterValues("industry"); //Can specify multiple parameters
         String location = request.getParameter("location");
         String hours = request.getParameter("hours");
         String employer = request.getParameter("employer");
-        
+        String longitude = request.getParameter("longitude");
+        String latitude = request.getParameter("latitude");
+
         DatabaseConnector db = new DatabaseConnector();
         
-        try{
-            //Execute db query
-            ResultSet rs = db.find(industry, location);
-            
-            //Convert db response to JSON
+        if (longitude == null || latitude == null) {
+            try {
+                //Execute db query
+                ResultSet rs = db.find(industry, location);
+                printResultSet(response, rs);
+            } catch (SQLException e) {
+                System.err.println("Error while printing result set: " + e.toString());
+            }
+        }else{
+            try {
+                //Execute db query
+                ResultSet rs = db.find(industry, latitude, longitude);
+                printResultSet(response, rs);
+            } catch (SQLException e) {
+                System.err.println("Error while printing result set: " + e.toString());
+            }
+        }
+    }
+
+    /**
+     * Convert db response to JSON
+     * @param response
+     * @param rs 
+     */
+    private void printResultSet(HttpServletResponse response, ResultSet rs) {
+        try {        
             PrintWriter outputStream = response.getWriter();
             JSONArray json = ResultSetConverter.convert(rs);
             String jsonString = json.toString();
@@ -54,6 +77,8 @@ public class JobSearch extends HttpServlet {
             Logger.getLogger(JobSearch.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException e) {
             System.err.println("Error while printing result set: " + e.toString());
+        } catch (IOException e){
+            Logger.getLogger(JobSearch.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
