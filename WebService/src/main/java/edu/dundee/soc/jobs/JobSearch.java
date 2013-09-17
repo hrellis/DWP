@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
+import com.google.code.geocoder.model.*;
+import com.google.code.geocoder.Geocoder;
+import com.google.code.geocoder.GeocoderRequestBuilder;
 
 @WebServlet(name = "JobSearch", urlPatterns = {"/*"})
 public class JobSearch extends HttpServlet {
@@ -42,7 +45,16 @@ public class JobSearch extends HttpServlet {
 
         DatabaseConnector db = new DatabaseConnector();
         
-        if (longitude == null || latitude == null) {
+        if (location != null){
+            final Geocoder geocoder = new Geocoder();
+            GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(location).setLanguage("en").getGeocoderRequest();
+            GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+            LatLng latlng = geocoderResponse.getResults().get(0).getGeometry().getLocation();
+            longitude = latlng.getLng().toPlainString();
+            latitude = latlng.getLat().toPlainString();
+        }
+                
+        if (longitude == null || latitude == null) {            
             try {
                 //Execute db query
                 ResultSet rs = db.find(industry, location);
