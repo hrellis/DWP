@@ -1,9 +1,9 @@
 from generic_twitter_spider import TwitterSpider
 
 class TwitterDwpSpider(TwitterSpider):
-    name = 'twitter_dwp'
+    name = 'twitter_dundee_jcp'
     screen_name = "DundeeCityJCP"
-    title = "twitter"
+    title = "Twitter @DundeeCityJCP"
     industry = "twitter"
     location = "Dundee"
     long = "-2.961539"

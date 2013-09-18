@@ -4,8 +4,6 @@ from datetime import datetime
 import twitter
 import re
 
-url_regex = r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&#+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-
 class TwitterSpider(BaseSpider):
     allowed_domains = ['twitter.com']
     start_urls = ['https://www.twitter.com']    
@@ -23,10 +21,10 @@ class TwitterSpider(BaseSpider):
                           consumer_key="O6jRxGVilkJVFmOeWIDb4g", 
                           access_token_key="1110145321-bnh4yg7046ixFy1GOW6BbqXrdz6vSdGXp4ZUvOI",
                           access_token_secret="l59JgdNFuN2PrWwUDZUiUTn5pDXv1dLb5DtchlvcM")
-        jcp_timeline = api.GetUserTimeline(screen_name=self.screen_name, exclude_replies=True)
-        jcp_job_posts = [status for status in jcp_timeline if self.valid_job(status)] 
-
-        for job in jcp_job_posts:
+        timeline = api.GetUserTimeline(screen_name=self.screen_name, exclude_replies=True)
+        job_posts = [status for status in timeline if self.valid_job(status)] 
+        
+        for job in job_posts:
             item = JobItem()
 
             item['title'] = self.title

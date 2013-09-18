@@ -1,65 +1,77 @@
-from scrapy.selector import HtmlXPathSelector
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.spider import BaseSpider
 from indeed.items import JobItem
 from scrapy.http import Request
 from sets import Set
-from json import loads
-from json import dumps
+from json import loads, dumps
+from datetime import datetime 
 import facebook
+from re import findall
+from time import sleep
+
+url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&#+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
 
 class FacebookSpider(BaseSpider):
     name = 'facebook'
     allowed_domains = ['graph.facebook.com']
-    #url for listing of page ids with locations nearby
-    start_urls = ['https://graph.facebook.com/search?type=place&center=56.457331238956,-2.9763746796287&distance=50000&limit=1000&access_token=1379244598975239|cf601ab7afd846d736601704787435fe']
+    start_urls = ['http://www.facebook.com']
+    graph = facebook.GraphAPI()
+    
+    def __init__(self):        
+        self.graph.access_token = facebook.get_app_access_token('1379244598975239', 
+                                                                'cf601ab7afd846d736601704787435fe')
 
-    def parse(self, response):   
-        graph = facebook.GraphAPI()
-        graph.access_token = facebook.get_app_access_token('1379244598975239', 'cf601ab7afd846d736601704787435fe')
-
-        location_set = Set()
-        lat, long = 56.350, -3.150
-
-        for long_i in range(30):
-            for lat_i in range(20):
-                locations = graph.fql("""SELECT page_id 
-                                        FROM place 
-                                        WHERE distance(latitude, longitude, "%s", "%s") < 50000 
-                                        LIMIT 100""" % (lat, long))
-                
-                for location in locations:
-                    location_set.add(location['page_id'])
-
-                print location_set
-                
-                lat += 0.01
-            lat = 56.350
-            long += 0.01
+    def parse(self, response):
+        for id, jobs in self.make_api_calls():
+            print(id, jobs)
+            employer_info = self.make_id_object_call(id)
             
-        print location_set
-        file = open('location_output.json', 'w')
-        file.write(dumps(list(location_set)))
+            for job in jobs:
+                item = JobItem()
+                
+                if findall(url_regex, job['message']):
+                    item['title'] = "facebook job"
+                    item['link'] = "http://www.facebook.com"
+                    item['desc'] = job['message']    
+                    item['location'] = employer_info['location']['city']
+                    item['employer'] = employer_info['name']
+                    item['industry'] = employer_info['category']
+                    item['long'] = employer_info['location']['longitude']
+                    item['lat'] = employer_info['location']['latitude']
+                    item['date_time'] = datetime.fromtimestamp(job['created_time'])
+        
+                    yield item
+        
+    def make_id_object_call(self, id):
+        print str(id)
+        info = self.graph.get_object(str(id))
+
+        return info
+     
+    def make_api_calls(self):
+        #Read id ids from file
+        file = open('location_output.json', 'r')
+        locations = file.read()
         file.close()
+
+        locations = loads(locations)
         
-#         locations = loads(response.body)
-#         locations = locations['data']
+        for id in locations:
+            response = self.graph.fql("""SELECT message, created_time 
+                                FROM stream 
+                                WHERE source_id=%s 
+                                AND actor_id=source_id 
+                                AND (%s)""" 
+                                % (id, 
+                                   self.generate_fql_keyword_search(['job', 'hiring', 'vacancy', 'position'])))
+            
+            sleep(1)
+            
+            print (id, response)
+            
+            if response:  #Only return if it isn't empty
+                yield (id, response)
         
-        for location in location_set:
-            print location
-            print graph.fql("""SELECT message, created_time 
-                FROM stream 
-                WHERE source_id=%s 
-                AND actor_id=source_id 
-                AND (%s)""" 
-                % (location, 
-                   self.generate_fql_keyword_search(['job', 'hiring', 'vacancy', 'position'])))
         
-        i = JobItem()
-        #i['domain_id'] = hxs.select('//input[@id="sid"]/@value').extract()
-        #i['name'] = hxs.select('//div[@id="name"]').extract()
-        #i['description'] = hxs.select('//div[@id="description"]').extract()
-        return i
     
     def generate_fql_keyword_search(self, keywords):
         fql = ''
