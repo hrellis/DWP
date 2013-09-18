@@ -71,6 +71,7 @@ public class JobSearch extends HttpServlet {
                 System.err.println("Error while printing result set: " + e.toString());
             }
         }
+        db.close();
     }
 
     /**
