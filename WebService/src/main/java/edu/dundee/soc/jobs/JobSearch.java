@@ -47,13 +47,13 @@ public class JobSearch extends HttpServlet {
         
         if (location != null){
             final Geocoder geocoder = new Geocoder();
-            GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(location).setLanguage("en").getGeocoderRequest();
+            GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress(location).setLanguage("en").setRegion("uk").getGeocoderRequest();
             GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
             LatLng latlng = geocoderResponse.getResults().get(0).getGeometry().getLocation();
             longitude = latlng.getLng().toPlainString();
             latitude = latlng.getLat().toPlainString();
         }
-                
+        
         if (longitude == null || latitude == null) {            
             try {
                 //Execute db query
