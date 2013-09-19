@@ -38,7 +38,7 @@ public class JobSearch extends HttpServlet {
         //Extract params from request
         String[] industry = request.getParameterValues("industry"); //Can specify multiple parameters
         String location = request.getParameter("location");
-        String hours = request.getParameter("hours");
+        int hours = Integer.parseInt(request.getParameter("hours"));
         String employer = request.getParameter("employer");
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
@@ -54,23 +54,14 @@ public class JobSearch extends HttpServlet {
             latitude = latlng.getLat().toPlainString();
         }
         
-        if (longitude == null || latitude == null) {            
-            try {
-                //Execute db query
-                ResultSet rs = db.find(industry, location);
-                printResultSet(response, rs);
-            } catch (SQLException e) {
-                System.err.println("Error while printing result set: " + e.toString());
-            }
-        }else{
-            try {
-                //Execute db query
-                ResultSet rs = db.find(industry, latitude, longitude);
-                printResultSet(response, rs);
-            } catch (SQLException e) {
-                System.err.println("Error while printing result set: " + e.toString());
-            }
+        try {
+            //Execute db query
+            ResultSet rs = db.find(industry, latitude, longitude, hours);
+            printResultSet(response, rs);
+        } catch (SQLException e) {
+            System.err.println("Error while printing result set: " + e.toString());
         }
+        
         db.close();
     }
 

@@ -95,12 +95,24 @@ public class DatabaseConnector {
                                                         "cos( radians( longitude) - radians( ? )) + " + 
                                                         "sin( radians( ? )) * sin(radians( latitude )))) " +
                                                         "AS distance FROM table_jobs " +
-                                                        "WHERE industry IN (%s) " +
+                                                        "WHERE industry IN (%s) " + 
+                                                        "AND hide = 0 " +
+                                                        "%s" +
                                                         "HAVING distance < 10 " +
                                                         "ORDER BY distance;";
     
-    public ResultSet find(String[] industry, String lat, String lng) throws SQLException {
-        String sql = String.format(SQL_FIND_BY_DISTANCE, preparePlaceHolders(industry.length));
+    public ResultSet find(String[] industry, String lat, String lng, int hours) throws SQLException {
+        String sql;
+        switch (hours){
+            case 0:
+                sql = String.format(SQL_FIND_BY_DISTANCE, preparePlaceHolders(industry.length), "AND part_time = 0 ");
+                break;
+            case 1:
+                sql = String.format(SQL_FIND_BY_DISTANCE, preparePlaceHolders(industry.length), "AND part_time = 1 ");
+                break;
+            default:
+                sql = String.format(SQL_FIND_BY_DISTANCE, preparePlaceHolders(industry.length), "");
+        }
         
         connect = getConnection();
         PreparedStatement statement = connect.prepareStatement(sql);
@@ -108,6 +120,8 @@ public class DatabaseConnector {
         statement.setString(2, lng);
         statement.setString(3, lat);
         setValues(statement, 4, industry);
+        
+        System.out.println(statement.toString());
         
         ResultSet resultSet = statement.executeQuery();
         return resultSet;
