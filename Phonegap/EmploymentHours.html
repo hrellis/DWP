@@ -6,36 +6,41 @@
 <body>
 
 	<script>
-	function setHours()
-	{
-	
-	localStorage.hoursVar =document.getElementById("hoursSelect").value;
-	  window.location="searchFilters.html"
-	
-	}
-	  </script>
-	<div class ="well">
- 			<div class ="text-center">
- 				<h4>Employer Filter</h4>
- 			</div>
- 	</div>
-	
-<select id ="hoursSelect">
-  <option value="-16">- 16</option>
-  <option value="16-24">16 - 24</option>
-  <option value="24+">24 +</option>
-  
-</select>
+		function setHours() {
+		if(document.getElementById("hoursSelect").value == "part-time")
+			{
+			localStorage.hoursVar = "1";
+			}
+		else
+			{
+			localStorage.hoursVar = "0";
+			}
+			window.location = "searchFilters.html"
 
-	<input class ="btn btn-success"type="button" value="Set Value" onclick="setHours()">
-	
-	<div class = "btn-toolbar ">
-       		<a href="searchFilters.html">
-       			<button class = "btn btn-success">Back</button>
-       		</a>
-       </div>
-	
- 	<script src="js/bootstrap.js"></script> 
+		}
+	</script>
+	<div class="well">
+		<div class="text-center">
+			<h4>Employer Filter</h4>
+		</div>
+	</div>
+
+	<select id="hoursSelect">
+		<option value="part-time">part-time</option>
+		<option value="full-time">full-time</option>
+
+	</select>
+
+	<input class="btn btn-success" type="button" value="Set Value"
+		onclick="setHours()">
+
+	<div class="btn-toolbar ">
+		<a href="searchFilters.html">
+			<button class="btn btn-success">Back</button>
+		</a>
+	</div>
+
+	<script src="js/bootstrap.js"></script>
 
 </body>
 </html>

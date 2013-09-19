@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+</head>
+
+<body>
+<script src="cordova.js"></script>
+
+	<script>
+		{
+			var titleTxt = document.createElement("h4");
+			titleTxt.innerHTML = "\n" + localStorage.jobTitle + "\n";
+			document.body.appendChild(titleTxt);
+
+			var employerTxt = document.createElement("p");
+			employerTxt.innerHTML = "Employer:" + localStorage.jobEmployer + "\n";
+			document.body.appendChild(employerTxt);
+
+			var descriptionTxt = document.createElement("p");
+			descriptionTxt.innerHTML = "\n" + localStorage.jobDescription
+					+ "\n";
+			document.body.appendChild(descriptionTxt);
+
+		
+			
+			
+			
+		}
+	</script>
+<div class = "btn-toolbar text-center">
+       		<a href="searchJobs.html">
+       			<button class = "btn btn-success">Back</button>
+       		</a>
+       </div>
+      <a href="#" onclick="window.open(localStorage.jobLink,'_system','location=yes')">Link</a><br /><br />
+</body>
+</html>
