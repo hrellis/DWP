@@ -5,10 +5,9 @@ from sets import Set
 from json import loads, dumps
 from datetime import datetime 
 import facebook
-from re import findall
-from time import sleep
+from re import compile
 
-url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&#+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+MAX_REQUESTS_PER_BATCH = 50
 
 class FacebookSpider(BaseSpider):
     name = 'facebook'
@@ -16,22 +15,33 @@ class FacebookSpider(BaseSpider):
     start_urls = ['http://www.facebook.com']
     graph = facebook.GraphAPI()
     
-    def __init__(self):        
-        self.graph.access_token = facebook.get_app_access_token('1379244598975239', 
-                                                                'cf601ab7afd846d736601704787435fe')
+    #If any regexes match then it's a job 
+    job_regexes = ['http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&#+]|[!*(),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', #url
+                   '(\d\s?){6,12}',    #Phone number
+                   '[^@]+@[^@]+\.[^@]+'] #Email
+    
+    def __init__(self, start_page_id=0):        
+        self.start_page_id = start_page_id
+        self.graph.access_token = facebook.get_app_access_token('1379244598975239', 'cf601ab7afd846d736601704787435fe')
+        self.job_regexes = map(compile, self.job_regexes)
 
     def parse(self, response):
-        for id, jobs in self.make_api_calls():
-            print(id, jobs)
-            employer_info = self.make_id_object_call(id)
+        for jobs in self.make_api_calls():
+            jobs = loads(jobs)      
             
             for job in jobs:
+                print "job"
+                print job
+                
                 item = JobItem()
                 
-                if findall(url_regex, job['message']):
+                if any(regex.search(job['message']) for regex in self.job_regexes):
+                    employer_info = self.make_id_object_call(job['source_id'])
+                    print employer_info
+                    
                     item['title'] = "facebook job"
-                    item['link'] = "http://www.facebook.com"
-                    item['desc'] = job['message']    
+                    item['link'] = "http://www.facebook.com/%s" % job['post_id'] 
+                    item['desc'] = job['message']
                     item['location'] = employer_info['location']['city']
                     item['employer'] = employer_info['name']
                     item['industry'] = employer_info['category']
@@ -42,9 +52,7 @@ class FacebookSpider(BaseSpider):
                     yield item
         
     def make_id_object_call(self, id):
-        print str(id)
         info = self.graph.get_object(str(id))
-
         return info
      
     def make_api_calls(self):
@@ -54,23 +62,36 @@ class FacebookSpider(BaseSpider):
         file.close()
 
         locations = loads(locations)
+        locations = locations[ locations.index(int(self.start_page_id)) - 1: ] #cut to the chase
+        
+        fql_batch_requests = []
+        
+        i = 0
         
         for id in locations:
-            response = self.graph.fql("""SELECT message, created_time 
-                                FROM stream 
-                                WHERE source_id=%s 
-                                AND actor_id=source_id 
-                                AND (%s)""" 
-                                % (id, 
-                                   self.generate_fql_keyword_search(['job', 'hiring', 'vacancy', 'position'])))
+            i += 1
+            if i >= MAX_REQUESTS_PER_BATCH:
+                for result in self.make_batch_request(fql_batch_requests):
+                    yield result
+                fql_batch_requests = []
+                i = 0
+
+            fql_batch_request = {}
+            fql_batch_request['method'] = 'GET'
+            fql_batch_request['relative_url'] = """method/fql.query?query=SELECT message, created_time, post_id, source_id FROM stream WHERE source_id=%s AND actor_id=source_id AND (%s)""" % (id, self.generate_fql_keyword_search(['job', 'hiring', 'vacancy', 'position']))
+
+            fql_batch_request['relative_url'] = fql_batch_request['relative_url'].replace(" ", "+")
             
-            sleep(1)
-            
-            print (id, response)
-            
-            if response:  #Only return if it isn't empty
-                yield (id, response)
+            fql_batch_requests.append(fql_batch_request)
         
+        
+        for result in self.make_batch_request(fql_batch_requests):
+            yield result
+                
+    def make_batch_request(self, batch_requests):
+        batch_requests = dumps(batch_requests)
+        for response in self.graph.request("", post_args = {"batch": batch_requests}):
+            yield response['body']
         
     
     def generate_fql_keyword_search(self, keywords):
