@@ -10,7 +10,15 @@
 	{
 		document.getElementById('LocBtn').innerHTML = "Location:" + localStorage.locVar;
 		document.getElementById('IndustryBtn').innerHTML = "Industry:" + localStorage.industryVar;
-		document.getElementById('HoursBtn').innerHTML = "Employment Hours:" + localStorage.hoursVar;
+		if(localStorage.hoursVar == "1")
+			{
+			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Part-time";
+			}
+		else
+			{
+			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Full-time";
+
+			}
 		document.getElementById('EmployerBtn').innerHTML = "Employer:" + localStorage.employerVar;
 	}
 	</script>
