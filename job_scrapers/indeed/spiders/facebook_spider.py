@@ -39,8 +39,10 @@ class FacebookSpider(BaseSpider):
                     employer_info = self.make_id_object_call(job['source_id'])
                     print employer_info
                     
+                    user_id, post_id = job['post_id'].split("_")
+                    
                     item['title'] = "facebook job"
-                    item['link'] = "http://www.facebook.com/%s" % job['post_id'] 
+                    item['link'] = "http://www.facebook.com/%s/posts/%s" % (user_id, post_id)
                     item['desc'] = job['message']
                     item['location'] = employer_info['location']['city']
                     item['employer'] = employer_info['name']
@@ -71,6 +73,7 @@ class FacebookSpider(BaseSpider):
         for id in locations:
             i += 1
             if i >= MAX_REQUESTS_PER_BATCH:
+                print id
                 for result in self.make_batch_request(fql_batch_requests):
                     yield result
                 fql_batch_requests = []
