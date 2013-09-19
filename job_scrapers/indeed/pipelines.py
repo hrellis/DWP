@@ -3,6 +3,15 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import MySQLdb
+from re import search, IGNORECASE 
+
+class PartTimePipeline(object):
+	def process_item(self, item, spider):
+		if any(search('part\W{,3}time', job_text, IGNORECASE) for job_text in [item['desc'], item['title']]):
+			item['part_time'] = 1
+		else:
+			item['part_time'] = 0
+		return item
 
 class DatabasePipeline(object):
 	def __init__(self):
@@ -17,7 +26,7 @@ class DatabasePipeline(object):
 	def process_item(self, item, spider):
 		try:
 			'''tTitle, tDescription, tLocation, tIndustry, tEmployment ,tEmployer , tContactNumber , tContactEmail , 
-			tContactAddress, tDate_Added, tUrl_link, tLongitude, tLatitude'''
+			tContactAddress, tDate_Added, tUrl_link, tLongitude, tLatitude, part_time'''
 			self.cursor.callproc('insert_job',
 									(item['title'].encode('utf-8'),
 									item['desc'].encode('utf-8'),
@@ -31,7 +40,8 @@ class DatabasePipeline(object):
 									item['date_time'].isoformat().encode('utf-8'),
 									item['link'].encode('utf-8'),
 									float(item['long']),
-									float(item['lat']))
+									float(item['lat']),
+									item['part_time'])
 								)
 			self.conn.commit()
 

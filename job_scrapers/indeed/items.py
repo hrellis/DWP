@@ -15,3 +15,4 @@ class JobItem(Item):
 	long = Field()
 	lat = Field()
 	date_time = Field()	
+	part_time = Field()
