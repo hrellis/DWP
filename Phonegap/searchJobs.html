@@ -32,6 +32,7 @@
 		var jobTitleArray = new Array();
 		var jobLinkArray = new Array();
 		var jobEmployerArray = new Array();
+		var jobIdArray = new Array();
 		function callback(data) {
 			$
 					.each(
@@ -48,11 +49,13 @@
 								jobTitleArray.push(item.Title);
 								jobLinkArray.push(item.Url_link);
 								jobEmployerArray.push(item.Employer);
+								jobIdArray.push(item.Job_id);
 								document.getElementById("btn" + i).onclick = function() {
 									localStorage.jobDescription = jobDescriptionArray[i];
 									localStorage.jobTitle = jobTitleArray[i];
 									localStorage.jobLink = jobLinkArray[i];
 									localStorage.jobEmployer = jobEmployerArray[i];
+									localStorage.jobId = jobIdArray[i];
 									window.location = "jobInfo.html";
 								}
 							})

@@ -6,16 +6,31 @@
 </head>
 
 <body>
-<script src="cordova.js"></script>
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="cordova.js"></script>
 
 	<script>
 		{
+			var jobMarked = false;
+			$(document)
+					.ready(
+							function() {
+								jobMarked = JSON.parse(localStorage.markedJobs)[localStorage.jobId];
+
+								if (jobMarked === undefined) {
+									unmarkedButtonAppearance();
+								} else {
+									markedButtonAppearance();
+								}
+							});
+
 			var titleTxt = document.createElement("h4");
 			titleTxt.innerHTML = "\n" + localStorage.jobTitle + "\n";
 			document.body.appendChild(titleTxt);
 
 			var employerTxt = document.createElement("p");
-			employerTxt.innerHTML = "Employer:" + localStorage.jobEmployer + "\n";
+			employerTxt.innerHTML = "Employer:" + localStorage.jobEmployer
+					+ "\n";
 			document.body.appendChild(employerTxt);
 
 			var descriptionTxt = document.createElement("p");
@@ -23,17 +38,61 @@
 					+ "\n";
 			document.body.appendChild(descriptionTxt);
 
-		
-			
-			
-			
+			if (localStorage.markedJobs === undefined) {
+				localStorage.markedJobs = "{}";
+			}
+
+			function toggleButton() {
+				if (jobMarked)
+					unmarkJob();
+				else
+					markJob();
+			}
+
+			function markedButtonAppearance(marked) {
+				jobMarked = true;
+				document.getElementById("mark-btn").innerHTML = "Unmark";
+			}
+
+			function unmarkedButtonAppearance() {
+				jobMarked = false;
+				document.getElementById("mark-btn").innerHTML = "Mark";
+			}
+
+			function unmarkJob() {
+				unmarkedButtonAppearance();
+				var markedJobs = localStorage.markedJobs;
+				markedJobs = JSON.parse(markedJobs);
+				delete markedJobs[localStorage.jobId];
+				localStorage.markedJobs = JSON.stringify(markedJobs);
+			}
+
+			function markJob() {
+				markedButtonAppearance();
+				var job = {
+					"Title" : localStorage.jobTitle,
+					"Employer" : localStorage.jobEmployer,
+					"Description" : localStorage.jobDescription,
+					"Url_link" : localStorage.jobLink
+				};
+
+				var markedJobs = localStorage.markedJobs
+				markedJobs = JSON.parse(markedJobs);
+				markedJobs[localStorage.jobId] = job;
+				localStorage.markedJobs = JSON.stringify(markedJobs);
+			}
 		}
 	</script>
-<div class = "btn-toolbar text-center">
-       		<a href="searchJobs.html">
-       			<button class = "btn btn-success">Back</button>
-       		</a>
-       </div>
-      <a href="#" onclick="window.open(localStorage.jobLink,'_system','location=yes')">Link</a><br /><br />
+	<div class="btn-toolbar text-right">
+		<button onclick="javascript:toggleButton()" class="btn btn-success"
+			id="mark-btn">Mark</button>
+	</div>
+	<div class="btn-toolbar text-center">
+		<button class="btn btn-success" onclick="javascript:history.back()">Back</button>
+	</div>
+	<a href="#"
+		onclick="window.open(localStorage.jobLink,'_system','location=yes')">Link</a>
+	<br />
+	<br />
 </body>
 </html>
