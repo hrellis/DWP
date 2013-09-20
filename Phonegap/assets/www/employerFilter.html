@@ -1,22 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
 </head>
 <body>
 
 	<script>
-		function setHours() {
-		if(document.getElementById("hoursSelect").value == "part-time")
-			{
-			localStorage.hoursVar = "1";
-			}
-		else
-			{
-			localStorage.hoursVar = "0";
-			}
+		function setEmployer() {
+			localStorage.employerVar = document.forms["employerForm"]["employer"].value;
 			window.location = "searchFilters.html"
-
 		}
 	</script>
 	<div class="well">
@@ -24,17 +17,12 @@
 			<h4>Employer Filter</h4>
 		</div>
 	</div>
+	<form name="employerForm">
+		<input type="text" name="employer"> <input type="button"
+			value="Set Value" onclick="setEmployer()">
+	</form>
 
-	<select id="hoursSelect">
-		<option value="part-time">part-time</option>
-		<option value="full-time">full-time</option>
-
-	</select>
-
-	<input class="btn btn-success" type="button" value="Set Value"
-		onclick="setHours()">
-
-	<div class="btn-toolbar ">
+	<div class="btn-toolbar text-center">
 		<a href="searchFilters.html">
 			<button class="btn btn-success">Back</button>
 		</a>

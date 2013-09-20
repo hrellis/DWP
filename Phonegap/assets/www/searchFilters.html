@@ -4,7 +4,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
 </head>
-	<body>
+	<body onload ="testing2()">
+	<script>
+	function testing2()
+	{
+		document.getElementById('LocBtn').innerHTML = "Location:" + localStorage.locVar;
+		document.getElementById('IndustryBtn').innerHTML = "Industry:" + localStorage.industryVar;
+		if(localStorage.hoursVar == "1")
+			{
+			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Part-time";
+			}
+		if(localStorage.hoursVar == "0")
+			{
+			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Full-time";
+
+			}
+		document.getElementById('EmployerBtn').innerHTML = "Employer:" + localStorage.employerVar;
+	}
+	
+	function Search()
+	{
+		if(localStorage.hoursVar)
+			{
+			window.open("searchJobs.html")
+			}
+		else
+			{
+			alert("please choose part-time or full time");
+			}
+			
+		
+	}
+	</script>
+	
 
 		<div class ="well">
  			<div class ="text-center">
@@ -13,25 +45,37 @@
  		</div>
  		<div class = "btn-toolbar text-center">
        		<a href="LocationFilter.html">
-       			<button class = "btn btn-success">Location:</button>
+       			<button id ="LocBtn" class = "btn btn-success">Location:</button>
        		</a>
        </div>
        
        <div class = "btn-toolbar text-center">
-       		<a href="LocationFilter.html">
-       			<button class = "btn btn-success">Industry:</button>
+       		<a href="industryFilter.html">
+       			<button id ="IndustryBtn" class = "btn btn-success">Industry:</button>
        		</a>
        </div>
        
        <div class = "btn-toolbar text-center">
        		<a href="EmploymentHours.html">
-       			<button class = "btn btn-success">Employment hours:</button>
+       			<button id ="HoursBtn" class = "btn btn-success">Employment Hours:</button>
        		</a>
        </div>
        
        <div class = "btn-toolbar text-center">
-       		<a href="LocationFilter.html">
-       			<button class = "btn btn-success">Employer:</button>
+       		<a href="employerFilter.html">
+       			<button id ="EmployerBtn" class = "btn btn-success">Employer:</button>
+       		</a>
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		
+       			<button class = "btn btn-success" onclick="Search()">Search</button>
+       		
+       </div>
+       
+       <div class = "btn-toolbar text-center">
+       		<a href="index.html">
+       			<button class = "btn btn-success">Back</button>
        		</a>
        </div>
  	<script src="js/bootstrap.js"></script> 
