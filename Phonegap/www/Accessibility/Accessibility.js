@@ -29,6 +29,7 @@ function changeFontSize(percentage) {
 	
 	// set body's fontsize to the specified percentage.
 	setFontSize('button', percentage);
+	setFontSize('p', percentage);
 	setFontSize('h4', percentage);
 }
 
