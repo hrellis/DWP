@@ -24,7 +24,7 @@
 									.ajax({
 										url : 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry='
 												+ localStorage.industryVar
-												+ "&industry=twitter&part_time=" + localStorage.hoursVar,
+												+ "&industry=twitter&part_time=" + localStorage.hoursVar +"&radius=" + localStorage.radiusVar,
 										dataType : 'jsonp'
 									})
 						});
@@ -32,7 +32,6 @@
 		var jobTitleArray = new Array();
 		var jobLinkArray = new Array();
 		var jobEmployerArray = new Array();
-		var jobIdArray = new Array();
 		function callback(data) {
 			$
 					.each(
@@ -44,18 +43,16 @@
 														+ '<button style="width:100%" class= "btn btn-success" id =btn'
 														+ i + '>' + item.Title
 														+ '</button>'
-														+ '</div>');
+														+ '</div><br>');
 								jobDescriptionArray.push(item.Description);
 								jobTitleArray.push(item.Title);
 								jobLinkArray.push(item.Url_link);
 								jobEmployerArray.push(item.Employer);
-								jobIdArray.push(item.Job_id);
 								document.getElementById("btn" + i).onclick = function() {
 									localStorage.jobDescription = jobDescriptionArray[i];
 									localStorage.jobTitle = jobTitleArray[i];
 									localStorage.jobLink = jobLinkArray[i];
 									localStorage.jobEmployer = jobEmployerArray[i];
-									localStorage.jobId = jobIdArray[i];
 									window.location = "jobInfo.html";
 								}
 							})
