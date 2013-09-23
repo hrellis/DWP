@@ -3,10 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 </head>
 
 <body>
-	<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 	<div id="placeholder"></div>
 
 	<div class="well">
@@ -14,13 +15,10 @@
 			<h4>Search Results</h4>
 		</div>
 	</div>
-
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script>
 		$(document)
 				.ready(
 						function() {
-
 							$
 									.ajax({
 										url : 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry='
@@ -41,7 +39,7 @@
 								$('body')
 										.append(
 												'<div class ="btn-toolbar text-center">'
-														+ '<button style="width:100%" class= "btn btn-success" id =btn'
+														+ '<button style="width:100%" class= "btn btn-success" id =btn'  
 														+ i + '>' + item.Title
 														+ '</button>'
 														+ '</div><br>');
@@ -54,12 +52,12 @@
 									localStorage.jobTitle = jobTitleArray[i];
 									localStorage.jobLink = jobLinkArray[i];
 									localStorage.jobEmployer = jobEmployerArray[i];
+									localStorage.jobId = item.Job_id;
 									window.location = "jobInfo.html";
 								}
 							})
-
+					restoreStyle();
 		};
-	</script>
-	
+	</script>	
 </body>
 </html>

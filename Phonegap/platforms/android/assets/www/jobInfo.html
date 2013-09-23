@@ -82,6 +82,11 @@
 				markedJobs[localStorage.jobId] = job;
 				localStorage.markedJobs = JSON.stringify(markedJobs);
 			}
+			
+			function logApplyHistory() {
+				var applyHistory = localStorage.applyHistory;
+				applyHistory = JSON.parse(applyHistory);
+			}
 		}
 	</script>
 	<div class="btn-toolbar text-right">
