@@ -98,10 +98,10 @@ public class DatabaseConnector {
                                                         "WHERE industry IN (%s) " + 
                                                         "AND hide = 0 " +
                                                         "%s" +
-                                                        "HAVING distance < 10 " +
+                                                        "HAVING distance < ? " +
                                                         "ORDER BY distance;";
     
-    public ResultSet find(String[] industry, String lat, String lng, int hours) throws SQLException {
+    public ResultSet find(String[] industry, String lat, String lng, String radius, int hours) throws SQLException {
         String sql;
         switch (hours){
             case 0:
@@ -120,6 +120,7 @@ public class DatabaseConnector {
         statement.setString(2, lng);
         statement.setString(3, lat);
         setValues(statement, 4, industry);
+        statement.setString(4 + industry.length, radius);
         
         System.out.println(statement.toString());
         

@@ -40,6 +40,7 @@ public class JobSearch extends HttpServlet {
         String location = request.getParameter("location");
         int partTime = Integer.parseInt(request.getParameter("part_time"));
         String employer = request.getParameter("employer");
+        String radius = request.getParameter("radius");
         String longitude = request.getParameter("longitude");
         String latitude = request.getParameter("latitude");
 
@@ -56,7 +57,7 @@ public class JobSearch extends HttpServlet {
         
         try {
             //Execute db query
-            ResultSet rs = db.find(industry, latitude, longitude, partTime);
+            ResultSet rs = db.find(industry, latitude, longitude, radius, partTime);
             printResultSet(response, rs);
         } catch (SQLException e) {
             System.err.println("Error while printing result set: " + e.toString());
