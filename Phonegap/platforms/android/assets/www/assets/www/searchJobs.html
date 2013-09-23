@@ -6,7 +6,6 @@
 </head>
 
 <body>
-	<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 	<div id="placeholder"></div>
 
 	<div class="well">
@@ -25,7 +24,7 @@
 									.ajax({
 										url : 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry='
 												+ localStorage.industryVar
-												+ "&industry=twitter&part_time=" + localStorage.hoursVar +"&radius=" + localStorage.radiusVar,
+												+ "&industry=twitter&part_time=" + localStorage.hoursVar,
 										dataType : 'jsonp'
 									})
 						});
@@ -44,7 +43,7 @@
 														+ '<button style="width:100%" class= "btn btn-success" id =btn'
 														+ i + '>' + item.Title
 														+ '</button>'
-														+ '</div><br>');
+														+ '</div>');
 								jobDescriptionArray.push(item.Description);
 								jobTitleArray.push(item.Title);
 								jobLinkArray.push(item.Url_link);

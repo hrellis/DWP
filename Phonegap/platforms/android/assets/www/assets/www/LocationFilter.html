@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+</head>
+<body>
+
+	<script>
+	function setLoc()
+	{
+	localStorage.locVar =document.forms["locationForm"]["location"].value;
+	  window.location="searchFilters.html"
+	}
+	  </script>
+	<div class ="well">
+ 			<div class ="text-center">
+ 				<h4>Location Filter</h4>
+ 			</div>
+ 	</div>
+	<form name=locationForm>
+		<input type="text" name="location" >
+		<input type="button" value="Set Value" onclick="setLoc()">
+</form>  
+
+	<div class = "btn-toolbar text-center">
+       		<a href="searchFilters.html">
+       			<button class = "btn btn-success">Back</button>
+       		</a>
+       </div>
+	
+ 	<script src="js/bootstrap.js"></script> 
+
+</body>
+</html>
