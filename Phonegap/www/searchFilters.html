@@ -5,9 +5,14 @@
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="Accessibility/Accessibility.js"></script>
+<script type="text/javascript" src="idle.js"></script>
+
 </head>
 	<body onload ="testing2()">
 	<script>
+	var idlecounter = 0;
+	var appTimeStr = localStorage.appTime
+	var appCounter = parseInt(appTimeStr);
 	function testing2()
 	{
 		document.getElementById('LocBtn').innerHTML = "Location:" + localStorage.locVar;
@@ -39,6 +44,31 @@
 			
 		
 	}
+	
+	function locBtnClicked()
+		{
+			localStorage.appTime = appCounter;
+			window.location.assign("LocationFilter.html");
+		}
+	
+	function industryBtnClicked()
+	{
+		localStorage.appTime = appCounter;
+		window.location.assign("industryFilter.html");
+	}
+	
+	function hoursBtnClicked()
+	{
+		localStorage.appTime = appCounter;
+		window.location.assign("EmploymentHours.html");
+	}
+	
+	function radiusBtnClicked()
+	{
+		localStorage.appTime = appCounter;
+		window.location.assign("radiusFilter.html");
+	}
+
 	</script>
 	
 
@@ -49,33 +79,23 @@
  		</div>
  		<br>
  		<div class = "btn-toolbar text-center">
-       		<a href="LocationFilter.html">
-       			<button id ="LocBtn" class = "btn btn-success">Location:</button>
-       		</a>
+       			<button id ="LocBtn" class = "btn btn-success" onClick = "locBtnClicked()">Location:</button>
+       		
        </div>
        <br>
        <div class = "btn-toolbar text-center">
-       		<a href="industryFilter.html">
-       			<button id ="IndustryBtn" class = "btn btn-success">Industry:</button>
-       		</a>
+       			<button id ="IndustryBtn" class = "btn btn-success" onClick = "industryBtnClicked()">Industry:</button>
+       		
        </div>
        <br>
        <div class = "btn-toolbar text-center">
-       		<a href="EmploymentHours.html">
-       			<button id ="HoursBtn" class = "btn btn-success">Employment Hours:</button>
-       		</a>
+       			<button id ="HoursBtn" class = "btn btn-success" onClick = "hoursBtnClicked()">Employment Hours:</button>
+       		
        </div>
        <br>
        <div class = "btn-toolbar text-center">
-       		<a href="employerFilter.html">
-       			<button id ="EmployerBtn" class = "btn btn-success">Employer:</button>
-       		</a>
-       </div>
-       <br>
-       <div class = "btn-toolbar text-center">
-       		<a href="radiusFilter.html">
-       			<button id ="RadiusBtn" class = "btn btn-success">Radius:</button>
-       		</a>
+       			<button id ="RadiusBtn" class = "btn btn-success" onClick = "radiusBtnClicked()">Radius:</button>
+       		
        </div>
        <br>
        <div class = "btn-toolbar text-center">
@@ -85,9 +105,8 @@
        </div>
        <br>
        <div class = "btn-toolbar text-center">
-       		<a href="index.html">
        			<button class = "btn btn-success">Back</button>
-       		</a>
+       		
        </div>
        
  	<script src="js/bootstrap.js"></script> 

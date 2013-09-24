@@ -13,20 +13,24 @@
   		localStorage.industryVar = '';
   		localStorage.hoursVar = '';
   		localStorage.employerVar = '';
-  		
-  		
-  		$.idleTimer(10000);
-  	  
-  	  
-  		$(document).bind("idle.idleTimer", function(){
-  		});
-  		  
-  		  
-  		$(document).bind("active.idleTimer", function(){
-  			timeVar = timeVar + 1;
-  		});
-  		  
-  		
+  		localStorage.radiusVar = '';
+  		localStorage.appTime;
+
+  		var idlecounter = 0;
+  		var appTimeStr = localStorage.appTime
+  		var appCounter = parseInt(appTimeStr);
+		
+		
+  		function btnClicked()
+  		{
+  			localStorage.appTime = appCounter;
+  			window.location.assign("searchFilters.html");
+  		}
+  		function accountBtnClicked()
+  		{
+  			localStorage.appTime = appCounter;
+  			window.location.assign("AccountInfo.html");
+  		}
 	</script>
   <body>
  		<div class ="well">
@@ -36,9 +40,8 @@
  		</div>
  		
        	<div class = "btn-toolbar text-center">
-       		<a href="searchFilters.html">
-       		<button class = "btn btn-success">Search Jobs</button>
-       		</a>
+       		<button class = "btn btn-success" onClick = "btnClicked()">search Jobs</button>
+       		
        </div>
        
 		<div class = "btn-toolbar text-center">
@@ -48,9 +51,9 @@
        </div>
        
        <div class = "btn-toolbar text-center">
-       		<a href="AccountInfo.html">
-       			<button class = "btn btn-success">Account Info</button>
-       		</a>
+       		
+       			<button class = "btn btn-success" onclick="accountBtnClicked()">Account Info</button>
+       		
        </div>
     
       <div class = "btn-toolbar text-center">

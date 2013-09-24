@@ -4,10 +4,15 @@
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="Accessibility/Accessibility.js"></script>
+<script type="text/javascript" src="idle.js"></script>
 </head>
 <body>
 
 	<script>
+	var idlecounter = 0;
+	var appTimeStr = localStorage.appTime;
+	var appCounter = parseInt(appTimeStr);
+	
 		function setHours() {
 		if(document.getElementById("hoursSelect").value == "part-time")
 			{
@@ -19,6 +24,12 @@
 			}
 			window.location = "searchFilters.html"
 
+		}
+		
+		function backBtnClicked()
+		{
+		localStorage.appTime = appCounter;
+		window.location.assign("searchFilters.html");
 		}
 	</script>
 	<div class="well">
@@ -32,14 +43,12 @@
 		<option value="full-time">full-time</option>
 
 	</select>
-
 	<input class="btn btn-success" type="button" value="Set Value"
 		onclick="setHours()">
 
 	<div class="btn-toolbar ">
-		<a href="searchFilters.html">
-			<button class="btn btn-success">Back</button>
-		</a>
+			<button class="btn btn-success" onclick="backBtnClicked()"> Back</button>
+		
 	</div>
 
 	<script src="js/bootstrap.js"></script>
