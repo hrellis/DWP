@@ -94,6 +94,21 @@
 												+ search_count
 												+ '</button>'
 												+ '</div>');
+						
+						
+						document.getElementById("btn" + i).onclick = function() {
+							if (grouping === "day"){
+								var startOfDay = new Date(date).setHours(0, 0, 0, 0);
+								localStorage.timeBounds = JSON.stringify({"start": startOfDay, "end": new Date(startOfDay).setDate(new Date(startOfDay).getDate() + 1)});
+							}
+							else if(grouping === "week"){
+								localStorage.timeBounds = JSON.stringify({"start": new Date(startOfWeek(date)).getTime(), "end": new Date(new Date(startOfWeek(date)).setDate(new Date(startOfWeek(date)).getDate() + 7)).getTime()});
+							}
+							else if(grouping === "month"){
+								localStorage.timeBounds = JSON.stringify({"start": new Date(startOfMonth(date)).getTime(), "end": new Date(new Date(startOfMonth(date)).setDate(new Date(startOfMonth(date)).getDate() + 31)).getTime()}); 
+							}
+							window.location = "AccountInfoDetailed.html"
+						}
 					})
 			restoreStyle();
 		}
@@ -128,5 +143,11 @@
 	</div>
 	
 	<div class="btn-toolbar text-center" id="apply-history"></div>
+	
+	<div class="btn-toolbar text-center">
+		<a href="mainMenu.html">
+			<button class="btn btn-success"">Back</button>
+		</a>
+	</div>
 </body>
 </html>
