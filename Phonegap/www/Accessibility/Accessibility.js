@@ -42,6 +42,24 @@ function setFontSize(element, percentage) {
 
 // ------------------------------------------------------------------------------------------
 
+function changeFont(font) {
+	//store the font in local storage
+	localStorage.style = '{"font": "' + font + '"}'
+	
+	//set the body's font to the specified font
+	setFont('button', font);
+	setFont('p', font);
+	setFont('h4',font);
+}
+
+function setFont(element, font) {
+	var p = document.getElementsByTagName(element);
+	for(i = 0; i <  p.length; i++) {
+		p[i].style.font = font	
+	}
+}
+// ------------------------------------------------------------------------------------------
+
 function restoreStyle(){
 	var style = localStorage.style;
 	
