@@ -25,18 +25,20 @@ function changeStyle(ID) {
 
 function changeFontSize(percentage) {
 	// create cookie to store font size in
-	localStorage.style = '{"fontSize": "' + percentage + '"}'
+	localStorage.fontSize = percentage;
 	
 	// set body's fontsize to the specified percentage.
+	setFontSize('body', percentage);
 	setFontSize('button', percentage);
-	setFontSize('p', percentage);
+	setFontSize('h1', percentage);
 	setFontSize('h4', percentage);
+	setFontSize('p', percentage);
 }
 
 function setFontSize(element, percentage) {
 	var p = document.getElementsByTagName(element);
 	for (i = 0; i < p.length; i++) {
-		p[i].style.fontSize = percentage
+		p[i].style.fontSize = percentage;
 	}
 }
 
@@ -44,30 +46,33 @@ function setFontSize(element, percentage) {
 
 function changeFont(font) {
 	//store the font in local storage
-	localStorage.style = '{"font": "' + font + '"}'
+	localStorage.font = font;
 	
 	//set the body's font to the specified font
+	setFont('body', font);
 	setFont('button', font);
+	setFont('h1', font);
+	setFont('h4', font);
 	setFont('p', font);
-	setFont('h4',font);
 }
 
 function setFont(element, font) {
 	var p = document.getElementsByTagName(element);
 	for(i = 0; i <  p.length; i++) {
-		p[i].style.font = font	
+		p[i].style.fontFamily = font;
 	}
 }
 // ------------------------------------------------------------------------------------------
 
 function restoreStyle(){
-	var style = localStorage.style;
 	
-	if (style != undefined){
-		style = JSON.parse(style);
-		changeFontSize(style.fontSize);
+	if (localStorage.fontSize != undefined){
+		changeFontSize(localStorage.fontSize);
+	}
+	
+	if (localStorage.font != undefined){
+		changeFont(localStorage.font);
 	}
 }
 
-$(document)
-.ready(function(){restoreStyle()});
+$(document).ready(function(){restoreStyle()});
