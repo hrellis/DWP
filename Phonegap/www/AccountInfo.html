@@ -37,9 +37,11 @@
 						var periodStart = startOfTimePeriodFunction(date); 
 						
 						if (periodApplyHistory[periodStart.getTime()] === undefined)
-							periodApplyHistory[periodStart.getTime()] = [];
+							periodApplyHistory[periodStart.getTime()] = {"apply_history": [], "view_history": [], "search_history": []};
 						
-						periodApplyHistory[periodStart.getTime()] = periodApplyHistory[periodStart.getTime()].concat(apply_group);
+						periodApplyHistory[periodStart.getTime()].apply_history = periodApplyHistory[periodStart.getTime()].apply_history.concat(apply_group.apply_history);
+						periodApplyHistory[periodStart.getTime()].view_history = periodApplyHistory[periodStart.getTime()].view_history.concat(apply_group.view_history);
+						periodApplyHistory[periodStart.getTime()].search_history = periodApplyHistory[periodStart.getTime()].search_history.concat(apply_group.search_history);
 					})
 					
 			addInfo(periodApplyHistory, grouping);
@@ -73,7 +75,9 @@
 					function(i, apply_group) {
 						var date = new Date(parseInt(i));
 						var date_string = date.toLocaleDateString().split(" ");
-						var apply_count = apply_group.length;
+						var apply_count = apply_group.apply_history.length;
+						var view_count = apply_group.view_history.length;
+						var search_count = apply_group.search_history.length;
 						
 						$('#apply-history')
 								.append(
@@ -84,6 +88,10 @@
 												+ ' ' + date_string[1] 
 												+ ' Apply Count: '
 												+ apply_count
+												+ ' View Count: '
+												+ view_count
+												+ ' Search Count: '
+												+ search_count
 												+ '</button>'
 												+ '</div>');
 					})

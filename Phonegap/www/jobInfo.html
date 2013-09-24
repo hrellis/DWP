@@ -7,7 +7,7 @@
 <script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 <script src="cordova.js"></script>
 <script type="text/javascript" src="idle.js"></script>
-
+<script type="text/javascript" src="js/logger.js"></script>
 </head>
 
 <body>
@@ -30,6 +30,8 @@
 								} else {
 									markedButtonAppearance();
 								}
+								
+								logHistory("view_history");
 							});
 
 			var titleTxt = document.createElement("h4");
@@ -48,10 +50,6 @@
 
 			if (localStorage.markedJobs === undefined) {
 				localStorage.markedJobs = "{}";
-			}
-			
-			if (localStorage.applyHistory === undefined) {
-				localStorage.applyHistory = "{}";
 			}
 
 			function toggleButton() {
@@ -93,24 +91,6 @@
 				markedJobs[localStorage.jobId] = job;
 				localStorage.markedJobs = JSON.stringify(markedJobs);
 			}
-			
-			function logApplyHistory() {
-				var applyTime = new Date().getTime()
-				var date = new Date(applyTime).setHours(0, 0, 0, 0);  //Date with 0 time elements
-				
-				var applyHistory = localStorage.applyHistory;
-				applyHistory = JSON.parse(applyHistory);
-				
-				if (applyHistory[date] === undefined){
-					applyHistory[date] = [];
-				}
-				
-				applyHistory[date].push({"apply_time": applyTime,
-										"title": localStorage.jobTitle});
-				localStorage.applyHistory = JSON.stringify(applyHistory);
-				
-				window.open(localStorage.jobLink,'_system','location=yes');
-			}
 		}
 	</script>
 	<div class="btn-toolbar text-right">
@@ -121,7 +101,7 @@
 		<button class="btn btn-success" onclick="javascript:history.back();">Back</button>
 	</div>
 	<a href="#"
-		onclick="javascript:logApplyHistory();">Link</a>
+		onclick="javascript:logHistory('apply_history');">Link</a>
 	<br />
 	<br />
 	<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
