@@ -37,6 +37,8 @@
 		var jobTitleArray = new Array();
 		var jobLinkArray = new Array();
 		var jobEmployerArray = new Array();
+		var textCheck = localStorage.industryVar.replace(",","&industry=");
+		localStorage.industryVar = textCheck;
 		function callback(data) {
 			$
 					.each(
