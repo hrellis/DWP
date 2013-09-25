@@ -22,7 +22,9 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\bin\res\drawable-xhdpi\icon.png \
 C:\Users\Neil\DWP\Phonegap\platforms\android\bin\res\drawable-xhdpi\ic_launcher.png \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\accessibility.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\AccountInfo.html \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\AccountInfoDetailed.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\ant.properties \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\build.xml \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\config.xml \
@@ -35,6 +37,7 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\DWP_logo2.png \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\employerFilter.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\EmploymentHours.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\icon.png \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\idle.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\img \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\index.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\industryFilter.html \
@@ -64,7 +67,6 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\Accessibil
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnPink.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnWhite.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnYellow.gif \
-C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\index.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\whiteOnBlack.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\yellowOnBlack.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cordova\appinfo.jar \
@@ -81,6 +83,8 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cordova\lib\list-emulato
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cordova\lib\list-started-emulators \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cordova\lib\start-emulator \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\css\index.css \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\css\OpenDyslexic-Regular.otf \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\css\style.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap-responsive.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap-responsive.min.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap.css \
@@ -88,6 +92,7 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap.m
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\grid.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\img\logo.png \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\js\index.js \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\js\logger.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\jsBootstrap\bootstrap.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\jsBootstrap\bootstrap.min.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\res\icon \

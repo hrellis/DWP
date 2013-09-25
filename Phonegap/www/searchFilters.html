@@ -11,6 +11,14 @@
 </head>
 	<body onload ="testing2()">
 	<script>
+	//Init storage
+	var storageDefaults = {"locVar": "Dundee", "industryVar": "", "hoursVar": "0", "radiusVar": "10"};
+	$.each(storageDefaults,
+			function(k, v){
+				if (localStorage.getItem(k) === null)
+					localStorage.setItem(k, storageDefaults[k]);
+	})
+	
 	var idlecounter = 0;
 	var appTimeStr = localStorage.appTime
 	var appCounter = parseInt(appTimeStr);
@@ -40,9 +48,7 @@
 		else
 			{
 			alert("please choose part-time or full time");
-			}
-			
-		
+			}		
 	}
 	
 	function locBtnClicked()
@@ -105,8 +111,9 @@
        </div>
        <br>
        <div class = "btn-toolbar text-center">
-       			<button class = "btn btn-success">Back</button>
-       		
+	       <a href="mainMenu.html">
+	       		<button class = "btn btn-success">Back</button>
+	       </a>		
        </div>
        
  	<script src="js/bootstrap.js"></script> 
