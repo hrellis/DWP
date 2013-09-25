@@ -22,18 +22,26 @@ button	{font-size:0.8em;	}
 #blackOnSea a:hover {color:#666;}
 #blackOnSea a:active {color:#000;}
 #blackOnSea a:visited:hover {color:#000;}
-#yellowOnBlack {background-color:#000000; background-image:url(images/Side-Banner-Inverse.png); color:#ffff66;}
-#yellowOnBlack #twitter_feed {list-style-image:url(twitter-inverse.gif)};
-#yellowOnBlack a {color:#FFFF00;}
-#yellowOnBlack a:link {color:#ffff66;}
-#yellowOnBlack a:visited {color:#ffff66;}
-#yellowOnBlack a:hover {color:#FFFF00;}
-#yellowOnBlack a:active {color:#ffff66;}
-#yellowOnBlack a:visited:hover {color:#ffff00;}
+#blackOnSea .btn-success {background:#0C6; color:#000;}
 
-#blackOnYellow {background-color:#FFFF66; background-image:url(images/Side-Banner-Transparent.png);}
+#yellowOnGreen {background-color:#093; color:#FF0;}
+#yellowOnGreen a {color:#FF0;}
+#yellowOnGreen a:link {color:#FF0;}
+#yellowOnGreen a:visited {color:#FF0;}
+#yellowOnGreen a:hover {color:#FC0;}
+#yellowOnGreen a:active {color:#FF0;}
+#yellowOnGreen a:visited:hover {color:#FF0;}
+#yellowOnGreen .btn-success {background:#033; color:#FF0;}
 
-#blackOnPink {background-color:#ffdddd; background-image:url(images/Side-Banner-Transparent.png);}
+#blackOnOrange {background-color:#F90; color:#000;}
+#blackOnOrange a {color:#000;}
+#blackOnOrange a:link {color:#000;}
+#blackOnOrange a:visited {color:#000;}
+#blackOnOrange a:hover {color:#666;}
+#blackOnOrange a:active {color:#000;}
+#blackOnOrange a:visited:hover {color:#000;}
+#blackOnOrange .btn-success {background:#F60; color:#000;}
+
 		
 /* CSS Document */
 

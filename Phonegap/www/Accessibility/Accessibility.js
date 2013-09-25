@@ -64,6 +64,14 @@ function setFont(element, font) {
 }
 // ------------------------------------------------------------------------------------------
 
+function changeTheme(font) {
+	//store the theme in local storage
+	localStorage.theme = theme;
+	
+	//set the body's theme to the specified one 
+	setTheme();
+}
+// ------------------------------------------------------------------------------------------
 function restoreStyle(){
 	
 	if (localStorage.fontSize != undefined){
