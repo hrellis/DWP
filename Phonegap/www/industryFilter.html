@@ -15,10 +15,23 @@
 	var idlecounter = 0;
 	var appTimeStr = localStorage.appTime
 	var appCounter = parseInt(appTimeStr);
-	function setIndustry()
+	
+
+			
+	function setIndustry() {
+			var industryValue = $( "#industrySelect" ).val() || [];
+			localStorage.industryVar = industryValue;
+			
+			localStorage.appTime = appCounter;
+			window.location = "searchFilters.html"
+			
+		}
+	
+	
+	function backBtnClicked()
 	{
-	localStorage.industryVar =document.forms["industryForm"]["industry"].value;
-	  window.location="searchFilters.html"
+		localStorage.appTime = appCounter;
+		window.location.assign("searchFilters.html");
 	}
 	  </script>
 	<div class ="well">
@@ -26,10 +39,17 @@
  				<h4>Industry Filter</h4>
  			</div>
  	</div>
-	<form name="industryForm">
-		<input type="text" name="industry" >
-		<input type="button" value="Set Value" onclick="setIndustry()">
-</form>  
+    	<select id="industrySelect" multiple>
+		<option value="sales">sales</option>
+		<option value="marketing">marketing</option>
+		<option value="admin">admin</option>
+	</select>
+	
+    
+	<br>
+	<input class="btn btn-success" type="button" value="Set Value"
+		onclick="setIndustry()">
+	<br>
 	<div class = "btn-toolbar text-center">
        			<button class = "btn btn-success" onclick="backBtnClicked()">Back</button>
        		
