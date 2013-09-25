@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
+<script src="cordova.js"></script>
+</head>
+<body>
+	<script>
+		var day_name = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+		var view_state = ""
+		
+		var timeBounds = localStorage.timeBounds
+		timeBound = JSON.parse(timeBounds)
+		
+		var applyHistory = localStorage.applyHistory;
+		applyHistory = JSON.parse(applyHistory);
+		
+		//Updates the display
+		function addInfo(historyType, divId){
+			$(divId).empty();
+
+			$.each(
+					applyHistory,
+					function(i, apply_group) {
+						var date = new Date(parseInt(i));
+						var date_string = date.toLocaleDateString().split(" ");
+						$.each(
+								apply_group[historyType],
+								function(i, application){
+									if (application.time < timeBound.end && application.time >= timeBound.start) {
+										$(divId)
+										.append(
+												'<div class="btn-toolbar text-center">'
+														+ '<button style="width:100%" class= "btn btn-success" id =btn'
+														+ i + '>' + day_name[date.getDay()]
+														+ ' ' + date_string[0]
+														+ ' ' + date_string[1] 
+														+ ' - '
+														+ application.title
+														+ '</button>'
+														+ '</div>');
+									}
+								}
+								)					
+					})
+			restoreStyle();
+		}
+		
+		$(document).ready(
+				function(){
+					addInfo("apply_history", "#apply-history")
+					addInfo("view_history", "#view-history")}
+				);
+	</script>
+
+
+
+	<div class="well">
+		<div class="text-center">
+			<h4>Account Info</h4>
+		</div>
+	</div>
+	
+	<h4>Applied</h4>
+	<div class="btn-toolbar text-center" id="apply-history"></div>
+	<h4>Viewed</h4>
+	<div class="btn-toolbar text-center" id="view-history"></div>
+	
+	<div class="btn-toolbar text-center">
+		<a href="AccountInfo.html">
+			<button class="btn btn-success"">Back</button>
+		</a>
+	</div>
+</body>
+</html>

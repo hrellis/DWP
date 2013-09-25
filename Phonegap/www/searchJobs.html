@@ -22,6 +22,9 @@
 	var idlecounter = 0;
 	var appTimeStr = localStorage.appTime
 	var appCounter = parseInt(appTimeStr);
+	var multiIndustry = localStorage.industryVar.replace(",","&industry=")
+	localStorage.industryVar = multiIndustry;
+	
 		$(document)
 				.ready(
 						function() {
@@ -30,42 +33,48 @@
 										url : 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry='
 												+ localStorage.industryVar
 												+ "&industry=twitter&part_time=" + localStorage.hoursVar +"&radius=" + localStorage.radiusVar,
-										dataType : 'jsonp'
-									})
+										dataType : 'jsonp',
+										error: function (xhr, ajaxOptions, thrownError){
+											if (xhr.status != 200)
+												alert("Server connection unavailable");
+										}
+									});
 						});
 		var jobDescriptionArray = new Array();
 		var jobTitleArray = new Array();
 		var jobLinkArray = new Array();
 		var jobEmployerArray = new Array();
-		var textCheck = localStorage.industryVar.replace(",","&industry=");
-		localStorage.industryVar = textCheck;
 		function callback(data) {
-			$
-					.each(
-							data,
-							function(i, item) {
-								$('body')
-										.append(
-												'<div class ="btn-toolbar text-center">'
-														+ '<button style="width:100%" class= "btn btn-success" id =btn'  
-														+ i + '>' + item.Title
-														+ '</button>'
-														+ '</div><br>');
-								jobDescriptionArray.push(item.Description);
-								jobTitleArray.push(item.Title);
-								jobLinkArray.push(item.Url_link);
-								jobEmployerArray.push(item.Employer);
-								document.getElementById("btn" + i).onclick = function() {
-									localStorage.jobDescription = jobDescriptionArray[i];
-									localStorage.jobTitle = jobTitleArray[i];
-									localStorage.jobLink = jobLinkArray[i];
-									localStorage.jobEmployer = jobEmployerArray[i];
-									localStorage.jobId = item.Job_id;
-									localStorage.appTime = appCounter;
-									window.location = "jobInfo.html";
-								}
-							})
-					restoreStyle();
+			
+					if (data.length === 0)
+						alert("No jobs found");
+					else{
+						$.each(
+								data,
+								function(i, item) {
+									$('body')
+											.append(
+													'<div class ="btn-toolbar text-center">'
+															+ '<button style="width:100%" class= "btn btn-success" id =btn'  
+															+ i + '>' + item.Title
+															+ '</button>'
+															+ '</div><br>');
+									jobDescriptionArray.push(item.Description);
+									jobTitleArray.push(item.Title);
+									jobLinkArray.push(item.Url_link);
+									jobEmployerArray.push(item.Employer);
+									document.getElementById("btn" + i).onclick = function() {
+										localStorage.jobDescription = jobDescriptionArray[i];
+										localStorage.jobTitle = jobTitleArray[i];
+										localStorage.jobLink = jobLinkArray[i];
+										localStorage.jobEmployer = jobEmployerArray[i];
+										localStorage.jobId = item.Job_id;
+										localStorage.appTime = appCounter;
+										window.location = "jobInfo.html";
+									}
+								})
+						restoreStyle();
+					}
 		};
 		
 		logHistory("search_history");

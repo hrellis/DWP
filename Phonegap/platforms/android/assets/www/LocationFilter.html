@@ -3,10 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
+<script type="text/javascript" src="idle.js"></script>
+
 </head>
 <body>
 
 	<script>
+	var idlecounter = 0;
+	var appTimeStr = localStorage.appTime
+	var appCounter = parseInt(appTimeStr);
 	function setLoc()
 	{
 	localStorage.locVar =document.forms["locationForm"]["location"].value;
@@ -24,9 +32,8 @@
 </form>  
 
 	<div class = "btn-toolbar text-center">
-       		<a href="searchFilters.html">
-       			<button class = "btn btn-success">Back</button>
-       		</a>
+       			<button class = "btn btn-success" onclick="backBtnClicked()">Back</button>
+       		
        </div>
 	
  	<script src="js/bootstrap.js"></script> 
