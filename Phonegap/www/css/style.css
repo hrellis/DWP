@@ -15,14 +15,15 @@ button	{font-size:0.8em;	}
    	src: url('OpenDyslexic-Regular.otf');
 }
 
-#blackOnSea {background-color:#9FC; color:#000;}
+
+#blackOnSea {background-color:#8DEEEE; color:#000;}
 #blackOnSea a {color:#000;}
 #blackOnSea a:link {color:#000;}
 #blackOnSea a:visited {color:#000;}
 #blackOnSea a:hover {color:#666;}
 #blackOnSea a:active {color:#000;}
 #blackOnSea a:visited:hover {color:#000;}
-#blackOnSea .btn-success {background:#0C6; color:#000;}
+#blackOnSea .btn-success {background:; color:#000;}
 #blackOnSea .btn-primary {background:#6CC; color:#000;}
 
 #yellowOnGreen {background-color:#093; color:#FF0;}

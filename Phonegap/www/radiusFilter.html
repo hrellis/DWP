@@ -22,17 +22,17 @@
 	  </script>
 	<div class ="well">
  			<div class ="text-center">
- 				<h4>Location Filter</h4>
+ 				<h1>Location Filter</h1>
  			</div>
- 	</div>
-	<form name=radiusForm>
-		<input type="text" name="radius" >
-		<input type="button" value="Set Value" onclick="setRadius()">
-</form>  
+ 	</div> 
 
 	<div class = "btn-toolbar text-center">
-       		<a href="searchFilters.html">
-       			<button class = "btn btn-success" onclick="backBtnClicked()">Back</button>
+       		<form name=radiusForm>
+				<input type="text" name="radius" alt="Enter the radius value" >
+			</form> 
+            
+            <a href="searchFilters.html">
+       			<button class = "btn btn-success" onclick="setRadius()" alt="Set Radius">Set Radius</button>
        		</a>
        </div>
        
