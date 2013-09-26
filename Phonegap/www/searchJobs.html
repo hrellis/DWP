@@ -55,10 +55,9 @@
 								function(i, item) {
 									$('#job-list')
 											.append(
-													''
-															+ '<li  data-icon="arrow-r" id=btn'  
-															+ i + '><a href="#">' + item.Title
-															+ '</a></li>'
+															 '<li  data-icon="arrow-r" id=btn'  
+															+ i + '><a><div style="white-space:normal">' + item.Title
+															+ '</div></a></li>'
 															+ '');
 									jobDescriptionArray.push(item.Description);
 									jobTitleArray.push(item.Title);
