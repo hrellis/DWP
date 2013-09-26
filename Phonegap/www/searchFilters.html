@@ -41,8 +41,9 @@ $(function() {
 	function Search()
 	{
 		
-		var industryValue = $( "#industrySelect" ).val() || [];
+		var industryValue = $( "#industryList" ).val() || [];
 		if(industryValue.length === 0){
+			alert(industryValue);
 			alert("Select an industry");
 			return;
 		}
@@ -97,7 +98,7 @@ $(function() {
        </div>
 
        <div id="selection">
-<select id="industryList" multiple></select>
+<select id="industryList" multiple data-native-menu="true"></select>
 </div>
 
        <div class = "btn-toolbar text-center">

@@ -2,9 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+   <link type="text/css" rel="stylesheet" href="css/style.css" />
+   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 <script src="cordova.js"></script>
 </head>
@@ -34,19 +35,19 @@
 									if (application.time < timeBound.end && application.time >= timeBound.start) {
 										$(divId)
 										.append(
-												'<div class="btn-toolbar text-center">'
-														+ '<button style="width:100%" class= "btn btn-success" id =btn'
-														+ i + '>' + day_name[date.getDay()]
+												'<li id=btn'  
+														+ i + '><div style="white-space:normal">' 
+														+ day_name[date.getDay()]
 														+ ' ' + date_string[0]
 														+ ' ' + date_string[1] 
 														+ ' - '
 														+ application.title
-														+ '</button>'
-														+ '</div>');
+														+ '</div></li>');
 									}
 								}
 								)					
 					})
+			$(divId).listview("refresh");
 			restoreStyle();
 		}
 		
@@ -57,23 +58,19 @@
 				);
 	</script>
 
-
-
 	<div class="well">
 		<div class="text-center">
 			<h4>Account Info</h4>
 		</div>
 	</div>
+
+	<div class = "btn-toolbar text-center">
+		<button class = "btn btn-success" onclick="javascript:window.location.assign('AccountInfo.html')">Account Info</button>
+    </div>
 	
 	<h4>Applied</h4>
-	<div class="btn-toolbar text-center" id="apply-history"></div>
+	<ul class="btn-toolbar text-center" id="apply-history" data-role="listview"></ul>
 	<h4>Viewed</h4>
-	<div class="btn-toolbar text-center" id="view-history"></div>
-	
-	<div class = "btn-toolbar text-center">
-		<a href="AccountInfo.html" alt="Account Info">
-        	<button class="btn btn-success">Account Info</button>
-        </a>
-    </div>
+	<ul class="btn-toolbar text-center" id="view-history" data-role="listview"></ul>
 </body>
 </html>

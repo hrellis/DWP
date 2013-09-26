@@ -53,13 +53,12 @@
 						$.each(
 								data,
 								function(i, item) {
-									$('body')
+									$('#job-list')
 											.append(
-													'<div class ="btn-toolbar text-center">'
-															+ '<button style="width:100%" class= "btn btn-success" id =btn'  
-															+ i + '>' + item.Title
-															+ '</button>'
-															+ '</div><br>');
+															 '<li  data-icon="arrow-r" id=btn'  
+															+ i + '><a><div style="white-space:normal">' + item.Title
+															+ '</div></a></li>'
+															+ '');
 									jobDescriptionArray.push(item.Description);
 									jobTitleArray.push(item.Title);
 									jobLinkArray.push(item.Url_link);
@@ -74,6 +73,7 @@
 										window.location = "jobInfo.html";
 									}
 								})
+						$("#job-list").listview("refresh");
 						restoreStyle();
 					}
 		};
@@ -84,5 +84,9 @@
      <div class = "btn-toolbar text-center">
        			<button class = "btn btn-success" onclick="javascript:window.location.assign('searchFilters.html')">Search Filters</button>
        </div>
+       
+    
+	<ul id="job-list" data-role="listview"></ul>
+      
 </body>
 </html>

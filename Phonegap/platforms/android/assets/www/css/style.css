@@ -15,38 +15,37 @@ button	{font-size:0.8em;	}
    	src: url('OpenDyslexic-Regular.otf');
 }
 
-
-#blackOnSea {background-color:#8DEEEE; color:#000;}
-#blackOnSea a {color:#000;}
+#blackOnSea .ui-body-c, .ui-overlay-c {background:#8DEEEE; color:#000; text-shadow:0 0;}
+#blackOnSea a {color:#000 font-weight:100;}
 #blackOnSea a:link {color:#000;}
 #blackOnSea a:visited {color:#000;}
 #blackOnSea a:hover {color:#666;}
 #blackOnSea a:active {color:#000;}
 #blackOnSea a:visited:hover {color:#000;}
-#blackOnSea .btn-success {background:; color:#000;}
+#blackOnSea button{background:; color:#000;}
 #blackOnSea .btn-primary {background:#6CC; color:#000;}
+#yellowOnGreen li{background:#6CC; color:#000;}
+#yellowOnGreen .well {color:#000; font-weight:100; text-shadow:0 0;}
 
-#yellowOnGreen {background-color:#093; color:#FF0;}
-#yellowOnGreen a {color:#FF0;}
+#yellowOnGreen .ui-body-c, .ui-overlay-c {background:#093; color:#FF0; text-shadow:0 0;}
+#yellowOnGreen a {color:#FF0; font-weight:100;}
 #yellowOnGreen a:link {color:#FF0;}
 #yellowOnGreen a:visited {color:#FF0;}
 #yellowOnGreen a:hover {color:#FC0;}
 #yellowOnGreen a:active {color:#FF0;}
 #yellowOnGreen a:visited:hover {color:#FF0;}
-#yellowOnGreen .btn-success {background:#033; color:#FF0;}
-#yellowOnGreen .btn-primary {background:#063; color:#FF0;}
-#yellowOnGreen .well {color:#033;}
+#yellowOnGreen button {background:#033; color:#FF0;}
+#yellowOnGreen li{background:#063; color:#FF0;}
+#yellowOnGreen .well {color:#033; font-weight:100; text-shadow:0 0;}
 
-#blackOnOrange {background-color:#F90; color:#000;}
+#blackOnOrange .ui-body-c, .ui-overlay-c {background:#F90; color:#000;} 
 #blackOnOrange a {color:#000;}
 #blackOnOrange a:link {color:#000;}
 #blackOnOrange a:visited {color:#000;}
 #blackOnOrange a:hover {color:#666;}
 #blackOnOrange a:active {color:#000;}
 #blackOnOrange a:visited:hover {color:#000;}
-#blackOnOrange .btn-success {background:#F60; color:#000;}
-#blackOnOrange .btn-primary {background:#F93; color:#000;}
-
+#blackOnOrange button {background:#F60; color:#000;}
+#yellowOnGreen li{background:#F63; color:#000;}
 		
 /* CSS Document */
-

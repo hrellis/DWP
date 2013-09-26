@@ -14,6 +14,16 @@
 	<script>
 	//Init storage
 	var storageDefaults = {"locVar": "Dundee", "industryVar": "", "hoursVar": "0", "radiusVar": "10"};
+	var industryArray = ["Accountancy", "Actuarial", "Admin", "Banking", "Construction", "Customer Service", "Education", "Energy", "Engineering ", "Estate Agency", "Financial", "Insurance", "Health", "Hospitality", "Human Resources", "IT ", "Journalism", "Legal", "Tourism", "Logistics", "Manufacturing", "Management ", "Marketing", "Media", "Automotive", "Multilingual", "Purchasing ", "Quantity surveying", "Retail", "Sales", "Science", "Security", "Social Care", "Teaching", "Training", "Transport"];
+
+$(function() {
+  var options = '';
+  for (var i = 0; i < industryArray.length; i++) {
+      options += '<option value="' + industryArray[i] + '">' + industryArray[i] + '</option>';
+  }
+  $('#industryList').html(options);
+});
+
 	$.each(storageDefaults,
 			function(k, v){
 				if (localStorage.getItem(k) === null)
@@ -31,8 +41,9 @@
 	function Search()
 	{
 		
-		var industryValue = $( "#industrySelect" ).val() || [];
+		var industryValue = $( "#industryList" ).val() || [];
 		if(industryValue.length === 0){
+			alert(industryValue);
 			alert("Select an industry");
 			return;
 		}
@@ -76,7 +87,6 @@
 
 	</script>
 	
-
 		<div class ="well">
  			<div class ="text-center">
  				<h1>Search Filters</h1>
@@ -87,15 +97,9 @@
     			<input type="text" name="loc" id="loc"/>
        </div>
 
-       <div class = "btn-toolbar text-center">
-     		<label for="industrySelect">Industry</label>
-       		<select id="industrySelect" data-native-menu="true" multiple>
-       			<optgroup>Industry</optgroup>
-	            <option value="sales">Sales</option>
-	            <option value="marketing">Marketing</option>
-	            <option value="admin">Admin</option>
-	        </select>
-       </div>
+       <div id="selection">
+<select id="industryList" multiple data-native-menu="true"></select>
+</div>
 
        <div class = "btn-toolbar text-center">
        		<label for="hoursSelect">Employment Hours</label>
@@ -112,7 +116,7 @@
        </div>
 
        <div class = "btn-toolbar text-center">
-			<button class = "btn btn-success" onclick="Search()">Search for jobs</button>
+			<button class = "btn btn-success" onclick="Search()">Search For Jobs</button>
        </div>
         <div class = "btn-toolbar text-center">
         	<button class="btn btn-success" onclick="javascript:window.location.assign('mainMenu.html')">Main Menu</button>
