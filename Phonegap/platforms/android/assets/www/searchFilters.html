@@ -11,14 +11,6 @@
 </head>
 	<body onload ="testing2()">
 	<script>
-	//Init storage
-	var storage = ["locVar", "industryVar", "hoursVar", "employerVar", "radiusVar"];
-	$.each(storage,
-			function(i, storageVar){
-				if (localStorage.getItem(storageVar) === undefined)
-					localStorage[storageVar] = '';
-	})
-	
 	var idlecounter = 0;
 	var appTimeStr = localStorage.appTime
 	var appCounter = parseInt(appTimeStr);
@@ -48,7 +40,9 @@
 		else
 			{
 			alert("please choose part-time or full time");
-			}		
+			}
+			
+		
 	}
 	
 	function locBtnClicked()
@@ -80,7 +74,7 @@
 
 		<div class ="well">
  			<div class ="text-center">
- 				<h4>Search Filters</h4>
+ 				<h1>Search Filters</h1>
  			</div>
  		</div>
  		<br>
@@ -106,15 +100,15 @@
        <br>
        <div class = "btn-toolbar text-center">
        		
-       			<button class = "btn btn-success" onclick="Search()">Search</button>
+       			<button class = "btn btn-success" onclick="Search()">Search for jobs</button>
        		
        </div>
-       <br>
-       <div class = "btn-toolbar text-center">
-	       <a href="mainMenu.html">
-	       		<button class = "btn btn-success">Back</button>
-	       </a>   		
-       </div>
+       </br></br></br>
+        <div class = "btn-toolbar text-center">
+        <a href="mainMenu.html" alt="Main menu">
+        	<button class="btn btn-success">Main Menu</button>
+        </a>
+         </div>
        
  	<script src="js/bootstrap.js"></script> 
  		

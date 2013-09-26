@@ -15,14 +15,16 @@ button	{font-size:0.8em;	}
    	src: url('OpenDyslexic-Regular.otf');
 }
 
-#blackOnSea {background-color:#9FC; color:#000;}
+
+#blackOnSea {background-color:#8DEEEE; color:#000;}
 #blackOnSea a {color:#000;}
 #blackOnSea a:link {color:#000;}
 #blackOnSea a:visited {color:#000;}
 #blackOnSea a:hover {color:#666;}
 #blackOnSea a:active {color:#000;}
 #blackOnSea a:visited:hover {color:#000;}
-#blackOnSea .btn-success {background:#0C6; color:#000;}
+#blackOnSea .btn-success {background:; color:#000;}
+#blackOnSea .btn-primary {background:#6CC; color:#000;}
 
 #yellowOnGreen {background-color:#093; color:#FF0;}
 #yellowOnGreen a {color:#FF0;}
@@ -32,6 +34,8 @@ button	{font-size:0.8em;	}
 #yellowOnGreen a:active {color:#FF0;}
 #yellowOnGreen a:visited:hover {color:#FF0;}
 #yellowOnGreen .btn-success {background:#033; color:#FF0;}
+#yellowOnGreen .btn-primary {background:#063; color:#FF0;}
+#yellowOnGreen .well {color:#033;}
 
 #blackOnOrange {background-color:#F90; color:#000;}
 #blackOnOrange a {color:#000;}
@@ -41,6 +45,7 @@ button	{font-size:0.8em;	}
 #blackOnOrange a:active {color:#000;}
 #blackOnOrange a:visited:hover {color:#000;}
 #blackOnOrange .btn-success {background:#F60; color:#000;}
+#blackOnOrange .btn-primary {background:#F93; color:#000;}
 
 		
 /* CSS Document */

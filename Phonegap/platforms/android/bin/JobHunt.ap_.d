@@ -25,6 +25,7 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\accessibility.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\AccountInfo.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\AccountInfoDetailed.html \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\additionalInfo.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\ant.properties \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\build.xml \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\config.xml \
@@ -67,6 +68,7 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\Accessibil
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnPink.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnWhite.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\blackOnYellow.gif \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\index.html \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\whiteOnBlack.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\Accessibility\yellowOnBlack.gif \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cordova\appinfo.jar \

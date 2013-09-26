@@ -36,24 +36,20 @@
 	  </script>
 	<div class ="well">
  			<div class ="text-center">
- 				<h4>Industry Filter</h4>
+ 				<h1>Industry Filter</h1>
  			</div>
  	</div>
-    	<select id="industrySelect" multiple>
-		<option value="sales">sales</option>
-		<option value="marketing">marketing</option>
-		<option value="admin">admin</option>
-	</select>
 	
-    
-	<br>
-	<input class="btn btn-success" type="button" value="Set Value"
-		onclick="setIndustry()">
 	<br>
 	<div class = "btn-toolbar text-center">
-       			<button class = "btn btn-success" onclick="backBtnClicked()">Back</button>
-       		
-       </div>
+    	<select id="industrySelect" multiple>
+            <option value="sales">sales</option>
+            <option value="marketing">marketing</option>
+            <option value="admin">admin</option>
+        </select>
+        <br>
+    	<button class = "btn btn-success" onclick="setIndustry()" alt="Set Industry">Set Industry</button>
+    </div>
 		
  	<script src="js/bootstrap.js"></script> 
 

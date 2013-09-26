@@ -35,21 +35,17 @@
 	</script>
 	<div class="well">
 		<div class="text-center">
-			<h4>Employer Filter</h4>
+			<h1>Employer Filter</h1>
 		</div>
 	</div>
 
-	<select id="hoursSelect">
-		<option value="part-time">part-time</option>
-		<option value="full-time">full-time</option>
-
-	</select>
-	<input class="btn btn-success" type="button" value="Set Value"
-		onclick="setHours()">
-
-	<div class="btn-toolbar ">
-			<button class="btn btn-success" onclick="backBtnClicked()"> Back</button>
-		
+	<div class="btn-toolbar text-center">
+        <select id="hoursSelect">
+            <option value="part-time" alt="Part time">part-time</option>
+            <option value="full-time" alt="Full time">full-time</option>
+        </select>
+        <br>
+		<button class="btn btn-success" onclick="setHours()" alt="Set Hours"> Set hours</button>
 	</div>
 
 	<script src="js/bootstrap.js"></script>
