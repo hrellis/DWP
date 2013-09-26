@@ -4,10 +4,6 @@
  * For more information and instructions on usage, see http://blog.andybarratt.co.uk/?p=426
  */
 
-$.mobile.defaultPageTransition   = 'none'
-$.mobile.defaultDialogTransition = 'none'
-$.mobile.buttonMarkup.hoverDelay = 0
-
 
 // -----------------------------------------------------------------------------------------
 
