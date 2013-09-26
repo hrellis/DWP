@@ -59,16 +59,18 @@
 					unmarkJob();
 				else
 					markJob();
+				
+				$("#mark-btn").button("refresh");
 			}
 
 			function markedButtonAppearance(marked) {
 				jobMarked = true;
-				document.getElementById("mark-btn").innerHTML = "Unmark";
+				document.getElementById("mark-btn").innerHTML = "Unmark Job";
 			}
 
 			function unmarkedButtonAppearance() {
 				jobMarked = false;
-				document.getElementById("mark-btn").innerHTML = "Mark";
+				document.getElementById("mark-btn").innerHTML = "Mark Job";
 			}
 
 			function unmarkJob() {
