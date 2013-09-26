@@ -3,10 +3,11 @@
  * One line Accessibility Module by Andy Barratt
  * For more information and instructions on usage, see http://blog.andybarratt.co.uk/?p=426
  */
-var script = document.createElement('script');
-script.src = 'http://code.jquery.com/jquery-1.7.1.min.js';
-script.type = 'text/javascript';
-document.getElementsByTagName('head')[0].appendChild(script);
+
+$.mobile.defaultPageTransition   = 'none'
+$.mobile.defaultDialogTransition = 'none'
+$.mobile.buttonMarkup.hoverDelay = 0
+
 
 // -----------------------------------------------------------------------------------------
 
@@ -20,6 +21,7 @@ function changeFontSize(percentage) {
 	setFontSize('h1', percentage);
 	setFontSize('h4', percentage);
 	setFontSize('p', percentage);
+	setFontSize('span', percentage);
 }
 
 function setFontSize(element, percentage) {
@@ -41,6 +43,7 @@ function changeFont(font) {
 	setFont('h1', font);
 	setFont('h4', font);
 	setFont('p', font);
+	setFont('span', font);
 }
 
 function setFont(element, font) {

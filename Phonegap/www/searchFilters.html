@@ -2,37 +2,44 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+   <link type="text/css" rel="stylesheet" href="css/style.css" />
+   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <script type="text/javascript" src="Accessibility/Accessibility.js"></script>
 <script type="text/javascript" src="idle.js"></script>
 
 </head>
 	<body onload ="testing2()">
 	<script>
+	//Init storage
+	var storageDefaults = {"locVar": "Dundee", "industryVar": "", "hoursVar": "0", "radiusVar": "10"};
+	$.each(storageDefaults,
+			function(k, v){
+				if (localStorage.getItem(k) === null)
+					localStorage.setItem(k, storageDefaults[k]);
+	})
+	
 	var idlecounter = 0;
 	var appTimeStr = localStorage.appTime
 	var appCounter = parseInt(appTimeStr);
-	function testing2()
+	$(document).ready(function ()
 	{
-		document.getElementById('LocBtn').innerHTML = "Location:" + localStorage.locVar;
-		document.getElementById('IndustryBtn').innerHTML = "Industry:" + localStorage.industryVar;
-		if(localStorage.hoursVar == "1")
-			{
-			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Part-time";
-			}
-		if(localStorage.hoursVar == "0")
-			{
-			document.getElementById('HoursBtn').innerHTML = "Employment Hours:Full-time";
-
-			}
-
-		document.getElementById('RadiusBtn').innerHTML = "Radius:" + localStorage.radiusVar;
-	}
+		$('#loc').val(localStorage.locVar);
+	});
 	
 	function Search()
 	{
+		
+		var industryValue = $( "#industrySelect" ).val() || [];
+		if(industryValue.length === 0){
+			alert("Select an industry");
+			return;
+		}
+		
+		localStorage.industryVar = industryValue;
+		localStorage.radiusVar = $('#RadiusSlide').val();
+		
 		if(localStorage.hoursVar)
 			{
 			window.open("searchJobs.html")
@@ -41,8 +48,6 @@
 			{
 			alert("please choose part-time or full time");
 			}
-			
-		
 	}
 	
 	function locBtnClicked()
@@ -71,39 +76,45 @@
 
 	</script>
 	
-
 		<div class ="well">
  			<div class ="text-center">
  				<h1>Search Filters</h1>
  			</div>
  		</div>
  		<div class = "btn-toolbar text-center">
-       			<button id ="LocBtn" class = "btn btn-success" onClick = "locBtnClicked()">Location:</button>
-       		
+       			<label for="loc">Location</label>
+    			<input type="text" name="loc" id="loc"/>
        </div>
 
        <div class = "btn-toolbar text-center">
-       			<button id ="IndustryBtn" class = "btn btn-success" onClick = "industryBtnClicked()">Industry:</button>
-       		
+     		<label for="industrySelect">Industry</label>
+       		<select id="industrySelect" data-native-menu="true" multiple>
+       			<optgroup>Industry</optgroup>
+	            <option value="sales">Sales</option>
+	            <option value="marketing">Marketing</option>
+	            <option value="admin">Admin</option>
+	        </select>
        </div>
 
        <div class = "btn-toolbar text-center">
-       			<button id ="HoursBtn" class = "btn btn-success" onClick = "hoursBtnClicked()">Employment Hours:</button>
-       		
+       		<label for="hoursSelect">Employment Hours</label>
+	       	<select id="hoursSelect" data-native-menu="true">
+	       		<optgroup>Employment Hours</optgroup>
+	       		<option value="full-time" alt="Full time" selected="selected">Full-time</option>
+	            <option value="part-time" alt="Part time">Part-time</option>
+	        </select>
        </div>
+
        <div class = "btn-toolbar text-center">
-       			<button id ="RadiusBtn" class = "btn btn-success" onClick = "radiusBtnClicked()">Radius:</button>
-       		
+       		<label for="RadiusSlide">Distance</label>
+			<input type="range" name="RadiusSlide" id="RadiusSlide" value="10" min="0" max="50" />
        </div>
+
        <div class = "btn-toolbar text-center">
-       		
-       			<button class = "btn btn-success" onclick="Search()">Search for jobs</button>
-       		
+			<button class = "btn btn-success" onclick="Search()">Search For Jobs</button>
        </div>
         <div class = "btn-toolbar text-center">
-        <a href="mainMenu.html" alt="Main menu">
-        	<button class="btn btn-success">Main Menu</button>
-        </a>
+        	<button class="btn btn-success" onclick="javascript:window.location.assign('mainMenu.html')">Main Menu</button>
          </div>
        
  	<script src="js/bootstrap.js"></script> 

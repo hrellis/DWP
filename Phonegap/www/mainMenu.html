@@ -2,13 +2,14 @@
 
 <html>
   <head>
-   <link type="text/css" rel="stylesheet" href="cssBootstrap/bootstrap.css" />
    <link type="text/css" rel="stylesheet" href="css/style.css" />
-   <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="Accessibility/Accessibility.js"></script>
-
+   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script type="text/javascript" src="Accessibility/Accessibility.js"></script>	
   </head>
-  	<script>
+  <body>
+  	<script type="text/javascript">
  		localStorage.timeVar;
   		localStorage.appTime;
 
@@ -28,7 +29,7 @@
   			window.location.assign("AccountInfo.html");
   		}
 	</script>
-  <body>
+  
  		<div class ="well">
  			<div class ="text-center">
  				<h4>Main Menu</h4>
@@ -39,9 +40,7 @@
        		
        </div>
 		<div class = "btn-toolbar text-center">
-       		<a href="markedJobs.html">
-       		<button class = "btn btn-success">Marked Jobs</button>
-       		</a>
+       		<button class = "btn btn-success" onclick="javascript:window.location.assign('markedJobs.html')">Marked Jobs</button>
        </div>
        <div class = "btn-toolbar text-center">
        		
@@ -49,15 +48,11 @@
        		
        </div>
       <div class = "btn-toolbar text-center">
-       		<a href="accessibility.html">
-       			<button class = "btn btn-success">Accessibility Settings</button>
-       		</a>
+       		<button class = "btn btn-success" onclick="javascript:window.location.assign('accessibility.html')">Accessibility Settings</button>
        </div>
        
        <div class = "btn-toolbar text-center">
-       		<a href="additionalInfo.html">
-       			<button class = "btn btn-success">Travel Information</button>
-       		</a>
+			<button class = "btn btn-success" onclick="javascript:window.location.assign('additionalInfo.html')">Travel Information</button>
        </div>
     <script src="js/bootstrap.js"></script> 
     </body>
