@@ -41,12 +41,12 @@ class FacebookSpider(BaseSpider):
                     
                     user_id, post_id = job['post_id'].split("_")
                     
-                    item['title'] = "facebook job"
+                    item['title'] = "%s via facebook" % employer_info['name']
                     item['link'] = "http://www.facebook.com/%s/posts/%s" % (user_id, post_id)
                     item['desc'] = job['message']
                     item['location'] = employer_info['location']['city']
                     item['employer'] = employer_info['name']
-                    item['industry'] = employer_info['category']
+                    item['industry'] = "facebook"
                     item['long'] = employer_info['location']['longitude']
                     item['lat'] = employer_info['location']['latitude']
                     item['date_time'] = datetime.fromtimestamp(job['created_time'])
