@@ -33,7 +33,7 @@
 									.ajax({
 										url : 'http://ec2-50-18-26-146.us-west-1.compute.amazonaws.com:8080/JobSearch?location=dundee&industry='
 												+ localStorage.industryVar
-												+ "&industry=twitter&part_time=" + localStorage.hoursVar +"&radius=" + localStorage.radiusVar,
+												+ "&industry=twitter&industry=facebook&part_time=" + localStorage.hoursVar +"&radius=" + localStorage.radiusVar,
 										dataType : 'jsonp',
 										error: function (xhr, ajaxOptions, thrownError){
 											if (xhr.status != 200)

@@ -93,6 +93,7 @@ C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap.c
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\bootstrap.min.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\cssBootstrap\grid.css \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\img\logo.png \
+C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\js\fastclick.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\js\index.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\js\logger.js \
 C:\Users\Neil\DWP\Phonegap\platforms\android\assets\www\jsBootstrap\bootstrap.js \

@@ -53,7 +53,14 @@
 						$.each(
 								data,
 								function(i, item) {
-									$('#job-list')
+									var industry = '#job-list'
+									if(item.Industry === 'facebook')
+										industry = '#facebook-job-list';
+									else if (item.Industry === 'twitter')
+										industry = '#twitter-job-list';
+										
+									
+									$(industry)
 											.append(
 															 '<li  data-icon="arrow-r" id=btn'  
 															+ i + '><a><div style="white-space:normal">' + item.Title
@@ -74,6 +81,8 @@
 									}
 								})
 						$("#job-list").listview("refresh");
+						$("#twitter-job-list").listview("refresh");
+						$("#facebook-job-list").listview("refresh");
 						restoreStyle();
 					}
 		};
@@ -87,6 +96,10 @@
        
     
 	<ul id="job-list" data-role="listview"></ul>
+	<h4>Twitter Jobs</h4>
+	<ul id="twitter-job-list" data-role="listview"></ul>
+	<h4>Facebook Jobs</h4>
+	<ul id="facebook-job-list" data-role="listview"></ul>
       
 </body>
 </html>
